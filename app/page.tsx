@@ -87,8 +87,7 @@ export default async function HomePage() {
 
               {/* Form Note */}
               <p className="text-[10px] tracking-[0.15em] text-muted-foreground mt-4">
-                JOIN {siteSettings?.subscriberCount || "5,000"}+ OPERATORS. FREE
-                WEEKLY BRIEFING.
+                {siteSettings?.heroFormNote || `JOIN ${siteSettings?.subscriberCount || "5,000"}+ OPERATORS. FREE WEEKLY BRIEFING.`}
               </p>
             </div>
 
@@ -119,6 +118,7 @@ export default async function HomePage() {
         {/* ───────────────────── FEATURED STORIES ───────────────────── */}
         {featuredArticles && featuredArticles.length > 0 && (
           <section className="border-b border-border bg-foreground text-background">
+            <div className="max-w-[1200px] mx-auto">
             <div className="grid lg:grid-cols-[1fr_2fr]">
               {/* Left panel */}
               <div className="px-6 sm:px-8 lg:px-12 py-12 lg:py-16 flex flex-col justify-between lg:border-r border-background/10">
@@ -178,6 +178,7 @@ export default async function HomePage() {
                   </Link>
                 ))}
               </div>
+            </div>
             </div>
           </section>
         )}

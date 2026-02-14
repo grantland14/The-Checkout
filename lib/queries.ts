@@ -11,6 +11,7 @@ export async function getSiteSettings() {
     heroSubtitle,
     heroKicker,
     subscriberCount,
+    heroFormNote,
     openRate,
     trustedByCompanies,
     socialLinks,
