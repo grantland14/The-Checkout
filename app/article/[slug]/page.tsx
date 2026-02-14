@@ -213,13 +213,18 @@ export default async function ArticlePage({
 
       {/* Article Body */}
       <article className="max-w-[720px] mx-auto px-6 sm:px-8">
-        <div className="pb-14 lg:pb-16">
+        <div>
           {article.body && (
             <PortableText
               value={article.body}
               components={portableTextComponents}
             />
           )}
+        </div>
+
+        {/* Divider */}
+        <div className="py-14 lg:py-16">
+          <div className="w-16 h-[2px] bg-foreground" />
         </div>
 
         {/* Venice CTA */}
@@ -256,7 +261,7 @@ export default async function ArticlePage({
           }
 
           return (
-            <div className="mt-14 -mx-6 sm:-mx-8 bg-card border-y border-border">
+            <div className="-mx-6 sm:-mx-8 bg-card border-y border-border">
               <div className="max-w-[720px] mx-auto px-6 sm:px-8 py-14 sm:py-16">
                 <div className="grid sm:grid-cols-2 gap-8">
                   {/* Left: Tagline */}
@@ -291,7 +296,7 @@ export default async function ArticlePage({
             </div>
           )
         })()}
-        <div className="pb-14 lg:pb-16" />
+        <div className="py-14 lg:py-16" />
       </article>
 
       {/* Up Next */}
