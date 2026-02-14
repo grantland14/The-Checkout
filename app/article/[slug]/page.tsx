@@ -34,8 +34,9 @@ export default async function ArticlePage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
+  const decodedSlug = decodeURIComponent(slug)
   const [article, siteSettings] = await Promise.all([
-    getArticleBySlug(slug),
+    getArticleBySlug(decodedSlug),
     getSiteSettings(),
   ])
 

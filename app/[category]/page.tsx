@@ -2,7 +2,6 @@ export const revalidate = 60
 export const dynamicParams = true
 
 import { notFound } from "next/navigation"
-import Image from "next/image"
 import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -34,29 +33,31 @@ export default async function CategoryPage({
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
       <Header siteSettings={siteSettings} />
 
-      {/* Page Header */}
-      <section className="border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="w-16 h-[3px] bg-foreground mb-8" />
-          <h1 className="font-serif text-5xl lg:text-6xl tracking-tight mb-4">
-            {categoryData.title}
-          </h1>
-          {categoryData.description && (
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl">
-              {categoryData.description}
-            </p>
-          )}
-        </div>
-      </section>
+      <main>
+        {/* ───────────────── Hero Section ───────────────── */}
+        <section className="border-b border-border py-16 lg:py-20">
+          <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12">
+            <div className="flex items-baseline gap-6 mb-4">
+              <h1 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
+                {categoryData.title}
+              </h1>
+              <div className="hidden sm:block w-16 h-[2px] bg-foreground mb-1" />
+            </div>
+            {categoryData.description && (
+              <p className="text-lg text-muted-foreground max-w-2xl">
+                {categoryData.description}
+              </p>
+            )}
+          </div>
+        </section>
 
-      {/* Articles Grid */}
-      <section className="border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        {/* ───────────────── Articles List ───────────────── */}
+        <section>
           {articles && articles.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+            <div className="divide-y divide-border">
               {articles.map(
                 (article: {
                   _id: string
@@ -71,72 +72,73 @@ export default async function CategoryPage({
                   <Link
                     key={article._id}
                     href={`/article/${article.slug.current}`}
-                    className="group card-lift block"
+                    className="flex flex-col lg:flex-row gap-6 px-6 sm:px-8 lg:px-12 py-8 lg:py-10 hover:bg-card transition-all duration-500 group max-w-[1200px] mx-auto"
                   >
                     {/* Image */}
-                    <div className="image-editorial aspect-[3/2] bg-card mb-4 relative">
-                      {article.featuredImage ? (
-                        <Image
+                    {article.featuredImage && (
+                      <div className="w-full lg:w-80 h-48 bg-card shrink-0 image-editorial overflow-hidden">
+                        <img
                           src={urlFor(article.featuredImage)
-                            .width(600)
-                            .height(400)
+                            .width(640)
+                            .height(384)
                             .url()}
                           alt={article.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="w-full h-full object-cover"
                         />
-                      ) : (
-                        <div className="absolute inset-0 bg-gradient-to-br from-card to-border" />
-                      )}
-                    </div>
-
-                    {/* Meta */}
-                    <div className="flex items-center gap-3 mb-3">
-                      {article.category && (
-                        <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground">
-                          {article.category.title.toUpperCase()}
-                        </span>
-                      )}
-                      <span className="text-[10px] tracking-[0.2em] text-muted-foreground">
-                        {new Date(article.publishedAt).toLocaleDateString(
-                          "en-GB",
-                          {
-                            day: "numeric",
-                            month: "short",
-                            year: "numeric",
-                          }
-                        )}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h2 className="font-serif text-xl sm:text-2xl tracking-tight mb-2 headline-hover inline">
-                      {article.title}
-                    </h2>
-
-                    {/* Excerpt */}
-                    {article.excerpt && (
-                      <p className="text-sm text-muted-foreground mt-2 line-clamp-3">
-                        {article.excerpt}
-                      </p>
+                      </div>
                     )}
+
+                    {/* Content */}
+                    <div className="flex-1">
+                      {/* Tag + Date */}
+                      <div className="flex items-center gap-3 mb-3">
+                        {article.category && (
+                          <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground">
+                            {article.category.title.toUpperCase()}
+                          </span>
+                        )}
+                        <span className="text-[10px] text-muted-foreground">
+                          {new Date(article.publishedAt).toLocaleDateString(
+                            "en-GB",
+                            {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            }
+                          )}
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h2 className="font-serif text-2xl lg:text-3xl font-normal leading-snug mb-3">
+                        <span className="headline-hover">{article.title}</span>
+                      </h2>
+
+                      {/* Excerpt */}
+                      {article.excerpt && (
+                        <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
+                          {article.excerpt}
+                        </p>
+                      )}
+                    </div>
                   </Link>
                 )
               )}
             </div>
           ) : (
-            <p className="text-muted-foreground text-center py-12">
-              No articles in this category yet.
-            </p>
+            <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12">
+              <p className="text-muted-foreground text-center py-12">
+                No articles in this category yet.
+              </p>
+            </div>
           )}
-        </div>
-      </section>
+        </section>
 
-      {/* Newsletter CTA */}
-      <NewsletterSection siteSettings={siteSettings} />
+        {/* ───────────────── Newsletter CTA ───────────────── */}
+        <NewsletterSection siteSettings={siteSettings} />
+      </main>
 
       <Footer siteSettings={siteSettings} />
-    </div>
+    </>
   )
 }

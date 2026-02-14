@@ -3,32 +3,66 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* Black & white editorial palette */
   --background: #FFFFFF;
   --card: #F5F5F5;
   --foreground: #0D0D0D;
   --card-foreground: #0D0D0D;
+  --popover: #FFFFFF;
+  --popover-foreground: #0D0D0D;
+  --primary: #0D0D0D;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5F5F5;
+  --secondary-foreground: #0D0D0D;
   --muted: #F5F5F5;
   --muted-foreground: #6B6B6B;
   --accent: #0D0D0D;
   --accent-foreground: #FFFFFF;
+  --destructive: #dc2626;
+  --destructive-foreground: #FFFFFF;
   --border: #E5E5E5;
   --input: #E5E5E5;
   --ring: #0D0D0D;
+  --chart-1: #1A1A1A;
+  --chart-2: #404040;
+  --chart-3: #737373;
+  --chart-4: #A3A3A3;
+  --chart-5: #E5E5E5;
+  --radius: 0.25rem;
 }
 
 @theme inline {
   --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
   --font-serif: var(--font-instrument-serif), 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 @layer base {
@@ -40,30 +74,50 @@
   }
 }
 
-/* Headline hover underline effect */
+/* Headline underline slide-in on hover */
 .headline-hover {
-  background-image: linear-gradient(currentColor, currentColor);
+  display: inline;
+  background-image: linear-gradient(var(--foreground), var(--foreground));
   background-position: 0% 100%;
   background-repeat: no-repeat;
   background-size: 0% 1.5px;
-  transition: background-size 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: background-size 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
-
-.headline-hover:hover,
-.group:hover .headline-hover {
+.group:hover .headline-hover,
+.headline-hover:hover {
   background-size: 100% 1.5px;
 }
 
-/* Card lift effect */
+/* Card lift on hover */
 .card-lift {
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), background-color 0.5s ease;
 }
-
 .card-lift:hover {
   transform: translateY(-3px);
 }
 
-/* Fade in up animation */
+/* Hero accent stripe animation */
+@keyframes accent-draw {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+.accent-stripe {
+  position: relative;
+  display: inline;
+}
+.accent-stripe::after {
+  content: '';
+  position: absolute;
+  bottom: 0.05em;
+  left: 0;
+  height: 2px;
+  background: var(--foreground);
+  animation: accent-draw 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) 0.6s forwards;
+  width: 0;
+}
+
+/* Fade-in-up animation for scroll reveals */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -76,45 +130,94 @@
 }
 
 .animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
   opacity: 0;
-  animation: fadeInUp 0.8s ease forwards;
 }
 
 .animate-fade-in-up-delay-1 {
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.15s forwards;
   opacity: 0;
-  animation: fadeInUp 0.8s ease 0.15s forwards;
 }
 
 .animate-fade-in-up-delay-2 {
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.3s forwards;
   opacity: 0;
-  animation: fadeInUp 0.8s ease 0.3s forwards;
 }
 
 .animate-fade-in-up-delay-3 {
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.45s forwards;
   opacity: 0;
-  animation: fadeInUp 0.8s ease 0.45s forwards;
 }
 
-/* Article blockquote */
+/* Footer logo scale */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+    letter-spacing: 0.3em;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Infinite scroll animations */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.33%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-33.33%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 30s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 30s linear infinite;
+}
+
+/* Article blockquote styling */
+.prose blockquote,
 .article-blockquote {
+  position: relative;
+  margin: 2.5rem 0;
+  padding: 0 0 0 2rem;
   border-left: 3px solid var(--foreground);
-  padding-left: 2rem;
+}
+.prose blockquote p,
+.article-blockquote p {
   font-family: var(--font-serif);
   font-size: 1.375rem;
+  line-height: 1.45;
   font-style: italic;
+  color: var(--foreground);
+  letter-spacing: -0.01em;
 }
 
-/* Editorial image treatment */
+/* Image duotone treatment */
 .image-editorial {
+  position: relative;
   overflow: hidden;
 }
-
 .image-editorial img {
+  transition: filter 0.7s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
   filter: grayscale(0.3) contrast(1.05) brightness(1.02);
-  transition: filter 0.7s ease, transform 0.7s ease;
 }
-
 .group:hover .image-editorial img {
-  filter: grayscale(0) contrast(1.05) brightness(1.02);
+  filter: grayscale(0) contrast(1) brightness(1);
   transform: scale(1.03);
 }

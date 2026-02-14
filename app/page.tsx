@@ -43,14 +43,14 @@ export default async function HomePage() {
       <main>
         {/* ───────────────────────── HERO ───────────────────────── */}
         <section className="border-b border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 text-center">
+          <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12 py-20 sm:py-28 lg:py-36 text-center">
             {/* Kicker */}
-            <p className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground mb-6 animate-fade-in-up">
+            <p className="animate-fade-in-up text-[10px] sm:text-[11px] font-bold tracking-[0.25em] text-muted-foreground mb-6 sm:mb-8">
               {siteSettings?.heroKicker || "EUROPEAN MARKET INTELLIGENCE"}
             </p>
 
             {/* Headline */}
-            <h1 className="font-serif text-[2.5rem] sm:text-6xl lg:text-[5.5rem] tracking-tight leading-[1.05] max-w-5xl mx-auto mb-6 animate-fade-in-up-delay-1">
+            <h1 className="animate-fade-in-up-delay-1 font-serif text-[2.5rem] sm:text-6xl lg:text-[5.5rem] font-normal tracking-[-0.02em] leading-[1.05] sm:leading-[1] mb-8 sm:mb-10 text-balance max-w-[900px] mx-auto">
               {siteSettings?.heroHeadline ? (
                 <span
                   dangerouslySetInnerHTML={{
@@ -63,46 +63,48 @@ export default async function HomePage() {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in-up-delay-2">
+            <p className="animate-fade-in-up-delay-2 text-base sm:text-lg text-muted-foreground leading-relaxed mb-10 max-w-[540px] mx-auto">
               {siteSettings?.heroSubtitle ||
                 "A weekly briefing for the people building European commerce. Free, sharp, opinionated."}
             </p>
 
             {/* Email Form */}
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-6 animate-fade-in-up-delay-3">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                required
-                className="flex-1 px-4 py-3 bg-background border border-border text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground"
-              />
-              <button
-                type="submit"
-                className="bg-foreground text-background px-6 py-3 font-bold text-[10px] tracking-[0.2em] hover:bg-foreground/90 transition shrink-0"
-              >
-                SUBSCRIBE
-              </button>
-            </form>
+            <div className="animate-fade-in-up-delay-3 max-w-md mx-auto">
+              <form className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+                <input
+                  type="email"
+                  placeholder="YOUR EMAIL"
+                  required
+                  className="flex-1 bg-background border border-border px-4 py-3.5 text-sm font-medium tracking-widest placeholder:text-muted-foreground/50 focus:outline-none focus:border-foreground transition-colors duration-500"
+                />
+                <button
+                  type="submit"
+                  className="bg-foreground text-background px-8 py-3.5 font-bold text-sm tracking-widest hover:bg-foreground/90 transition-all duration-500"
+                >
+                  SUBSCRIBE
+                </button>
+              </form>
 
-            {/* Form Note */}
-            <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground mb-16">
-              JOIN {siteSettings?.subscriberCount || "5,000"}+ OPERATORS. FREE
-              WEEKLY BRIEFING.
-            </p>
+              {/* Form Note */}
+              <p className="text-[10px] tracking-[0.15em] text-muted-foreground mt-4">
+                JOIN {siteSettings?.subscriberCount || "5,000"}+ OPERATORS. FREE
+                WEEKLY BRIEFING.
+              </p>
+            </div>
 
             {/* Trusted By */}
             {siteSettings?.trustedByCompanies &&
               siteSettings.trustedByCompanies.length > 0 && (
-                <div>
-                  <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground mb-4">
+                <div className="mt-16 sm:mt-20">
+                  <p className="text-[10px] font-bold tracking-[0.3em] text-muted-foreground mb-8">
                     TRUSTED BY
                   </p>
-                  <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
+                  <div className="flex flex-wrap justify-center items-center gap-x-12 lg:gap-x-16 gap-y-6">
                     {siteSettings.trustedByCompanies.map(
                       (company: string, index: number) => (
                         <span
                           key={index}
-                          className="font-serif text-xl text-muted-foreground/40 hover:text-foreground transition cursor-default"
+                          className="font-serif text-xl lg:text-2xl text-muted-foreground/40 hover:text-foreground transition-colors duration-500 cursor-pointer"
                         >
                           {company}
                         </span>
@@ -116,46 +118,65 @@ export default async function HomePage() {
 
         {/* ───────────────────── FEATURED STORIES ───────────────────── */}
         {featuredArticles && featuredArticles.length > 0 && (
-          <section className="bg-foreground text-background">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-              <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-                {/* Left: Section header */}
+          <section className="border-b border-border bg-foreground text-background">
+            <div className="grid lg:grid-cols-[1fr_2fr]">
+              {/* Left panel */}
+              <div className="px-6 sm:px-8 lg:px-12 py-12 lg:py-16 flex flex-col justify-between lg:border-r border-background/10">
                 <div>
                   <p className="text-[10px] font-bold tracking-[0.25em] text-background/50 mb-4">
                     RIGHT NOW
                   </p>
-                  <h2 className="font-serif text-5xl sm:text-6xl lg:text-7xl tracking-tight">
-                    Featured Stories
+                  <h2 className="font-serif text-4xl lg:text-5xl font-normal tracking-tight leading-[1.05]">
+                    Featured<br />Stories
                   </h2>
                 </div>
+                <Link
+                  href="/news"
+                  className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] mt-10 text-background/50 hover:text-background transition-colors duration-500 group"
+                >
+                  VIEW ALL{" "}
+                  <span className="inline-block group-hover:translate-x-1 transition-transform duration-500">
+                    {"-->"}
+                  </span>
+                </Link>
+              </div>
 
-                {/* Right: 2x2 grid */}
-                <div className="grid sm:grid-cols-2 gap-px bg-background/10">
-                  {featuredArticles.map((article: any) => (
-                    <Link
-                      key={article._id}
-                      href={`/article/${article.slug.current}`}
-                      className="group p-6 hover:bg-background/5 transition"
-                    >
-                      {/* Category badge */}
+              {/* Stories grid */}
+              <div className="grid sm:grid-cols-2 divide-y sm:divide-y-0 divide-background/10">
+                {featuredArticles.map((article: any, idx: number) => (
+                  <Link
+                    key={article._id}
+                    href={`/article/${article.slug.current}`}
+                    className={`px-6 sm:px-8 py-8 lg:py-10 group transition-colors duration-500 hover:bg-background/5${
+                      idx % 2 === 1 ? " sm:border-l border-background/10" : ""
+                    }${idx >= 2 ? " sm:border-t border-background/10" : ""}`}
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      {/* Tag */}
                       {article.category && (
-                        <span className="inline-block text-[9px] font-bold px-2.5 py-1 tracking-[0.15em] bg-background/10 text-background/70 mb-3">
+                        <span
+                          className={`text-[9px] font-bold px-2.5 py-1 tracking-[0.15em] ${
+                            article.category.title?.toUpperCase() === "BREAKING"
+                              ? "bg-accent text-accent-foreground"
+                              : "bg-background/10 text-background/70"
+                          }`}
+                        >
                           {article.category.title?.toUpperCase()}
                         </span>
                       )}
 
-                      {/* Date */}
-                      <p className="text-[11px] text-background/40 mb-2">
+                      {/* Time */}
+                      <span className="text-[10px] text-background/40 font-medium tracking-wide">
                         {formatDate(article.publishedAt)}
-                      </p>
+                      </span>
+                    </div>
 
-                      {/* Title */}
-                      <h3 className="font-serif text-xl leading-snug headline-hover">
-                        {article.title}
-                      </h3>
-                    </Link>
-                  ))}
-                </div>
+                    {/* Title */}
+                    <h3 className="font-serif text-lg lg:text-xl font-normal tracking-tight leading-snug text-background/90 group-hover:text-background transition-colors duration-500">
+                      {article.title}
+                    </h3>
+                  </Link>
+                ))}
               </div>
             </div>
           </section>
@@ -163,19 +184,24 @@ export default async function HomePage() {
 
         {/* ───────────────────────── NEWS ───────────────────────── */}
         {newsArticles && newsArticles.length > 0 && (
-          <section className="border-b border-border">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <section className="py-20 lg:py-28 border-b border-border">
+            <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12">
               {/* Section heading */}
-              <div className="flex items-center gap-4 mb-12">
-                <h2 className="font-serif text-4xl sm:text-5xl tracking-tight">
-                  News
-                </h2>
-                <div className="flex-1 h-px bg-border" />
+              <div className="flex items-baseline justify-between mb-16">
+                <div className="flex items-baseline gap-4">
+                  <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
+                    News
+                  </h2>
+                  <div className="hidden sm:block w-16 h-[2px] bg-foreground mb-2" />
+                </div>
                 <Link
                   href="/news"
-                  className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground hover:text-foreground transition shrink-0"
+                  className="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-500 group"
                 >
-                  VIEW ALL --&gt;
+                  VIEW ALL{" "}
+                  <span className="inline-block group-hover:translate-x-1 transition-transform duration-500">
+                    {"-->"}
+                  </span>
                 </Link>
               </div>
 
@@ -183,54 +209,61 @@ export default async function HomePage() {
               {newsArticles[0] && (
                 <Link
                   href={`/article/${newsArticles[0].slug.current}`}
-                  className="group grid md:grid-cols-2 gap-8 mb-16 card-lift"
+                  className="block mb-16 lg:mb-20 group"
                 >
-                  {/* Image */}
-                  {newsArticles[0].featuredImage && (
-                    <div className="image-editorial aspect-[16/10] bg-muted overflow-hidden">
-                      <img
-                        src={urlFor(newsArticles[0].featuredImage)
-                          .width(800)
-                          .height(500)
-                          .url()}
-                        alt={newsArticles[0].title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-
-                  {/* Content */}
-                  <div className="flex flex-col justify-center">
-                    <p className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground mb-3">
-                      LATEST
-                    </p>
-                    <h3 className="font-serif text-3xl sm:text-4xl tracking-tight leading-snug mb-4 headline-hover">
-                      {newsArticles[0].title}
-                    </h3>
-                    {newsArticles[0].excerpt && (
-                      <p className="text-muted-foreground mb-6 leading-relaxed">
-                        {newsArticles[0].excerpt}
-                      </p>
+                  <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-12">
+                    {/* Image */}
+                    {newsArticles[0].featuredImage && (
+                      <div className="image-editorial w-full h-[260px] lg:h-[380px] bg-card">
+                        <img
+                          src={urlFor(newsArticles[0].featuredImage)
+                            .width(800)
+                            .height(500)
+                            .url()}
+                          alt={newsArticles[0].title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     )}
-                    <span className="text-[10px] font-bold tracking-[0.2em]">
-                      READ STORY --&gt;
-                    </span>
+
+                    {/* Content */}
+                    <div className="flex flex-col justify-center">
+                      <p className="text-[10px] font-bold tracking-[0.2em] text-foreground mb-4">
+                        {newsArticles[0].category?.title?.toUpperCase() || "NEWS"}
+                      </p>
+                      <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-tight mb-6">
+                        <span className="headline-hover">
+                          {newsArticles[0].title}
+                        </span>
+                      </h3>
+                      {newsArticles[0].excerpt && (
+                        <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-[540px]">
+                          {newsArticles[0].excerpt}
+                        </p>
+                      )}
+                      <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground group-hover:text-foreground transition-colors duration-500 mt-8">
+                        READ STORY {"-->"}
+                      </span>
+                    </div>
                   </div>
                 </Link>
               )}
 
+              {/* Divider */}
+              <div className="border-t border-border mb-12" />
+
               {/* Remaining articles in 3-column grid */}
               {newsArticles.length > 1 && (
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid lg:grid-cols-3 gap-x-12 gap-y-12">
                   {newsArticles.slice(1).map((article: any) => (
                     <Link
                       key={article._id}
                       href={`/article/${article.slug.current}`}
-                      className="group card-lift"
+                      className="group card-lift block"
                     >
                       {/* Image */}
                       {article.featuredImage && (
-                        <div className="image-editorial aspect-[16/10] bg-muted overflow-hidden mb-4">
+                        <div className="image-editorial w-full h-[200px] bg-card mb-5">
                           <img
                             src={urlFor(article.featuredImage)
                               .width(600)
@@ -242,26 +275,21 @@ export default async function HomePage() {
                         </div>
                       )}
 
-                      {/* Category badge */}
-                      {article.category && (
-                        <span className="inline-block text-[9px] font-bold px-2.5 py-1 tracking-[0.15em] border border-border text-muted-foreground mb-3">
-                          {article.category.title?.toUpperCase()}
-                        </span>
-                      )}
-
-                      {/* Date */}
-                      <p className="text-[11px] text-muted-foreground mb-2">
-                        {formatDate(article.publishedAt)}
+                      {/* Tag */}
+                      <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground mb-4">
+                        {article.category?.title?.toUpperCase() || "NEWS"}
                       </p>
 
                       {/* Title */}
-                      <h3 className="font-serif text-xl leading-snug mb-2 headline-hover">
-                        {article.title}
+                      <h3 className="font-serif text-xl lg:text-2xl font-normal leading-snug mb-3">
+                        <span className="headline-hover">
+                          {article.title}
+                        </span>
                       </h3>
 
                       {/* Excerpt */}
                       {article.excerpt && (
-                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                        <p className="text-sm text-muted-foreground leading-relaxed">
                           {article.excerpt}
                         </p>
                       )}
@@ -275,19 +303,24 @@ export default async function HomePage() {
 
         {/* ───────────────────────── ANALYSIS ───────────────────────── */}
         {analysisArticles && analysisArticles.length > 0 && (
-          <section className="border-b border-border">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <section className="py-20 lg:py-28 border-b border-border">
+            <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12">
               {/* Section heading */}
-              <div className="flex items-center gap-4 mb-12">
-                <h2 className="font-serif text-4xl sm:text-5xl tracking-tight">
-                  Analysis
-                </h2>
-                <div className="flex-1 h-px bg-border" />
+              <div className="flex items-baseline justify-between mb-16">
+                <div className="flex items-baseline gap-4">
+                  <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
+                    Analysis
+                  </h2>
+                  <div className="hidden sm:block w-16 h-[2px] bg-foreground mb-2" />
+                </div>
                 <Link
                   href="/analysis"
-                  className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground hover:text-foreground transition shrink-0"
+                  className="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-500 group"
                 >
-                  VIEW ALL --&gt;
+                  VIEW ALL{" "}
+                  <span className="inline-block group-hover:translate-x-1 transition-transform duration-500">
+                    {"-->"}
+                  </span>
                 </Link>
               </div>
 
@@ -295,27 +328,38 @@ export default async function HomePage() {
               {analysisArticles[0] && (
                 <Link
                   href={`/article/${analysisArticles[0].slug.current}`}
-                  className="group block mb-16 card-lift"
+                  className="block mb-12 group"
                 >
-                  <p className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground mb-3">
-                    DEEP DIVE
-                  </p>
-                  <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-snug mb-4 headline-hover max-w-3xl">
-                    {analysisArticles[0].title}
-                  </h3>
-                  {analysisArticles[0].excerpt && (
-                    <p className="text-lg text-muted-foreground mb-4 max-w-2xl leading-relaxed">
-                      {analysisArticles[0].excerpt}
-                    </p>
-                  )}
-                  <div className="flex items-center gap-4">
-                    {analysisArticles[0].readingTime && (
-                      <span className="text-[11px] text-muted-foreground">
-                        {analysisArticles[0].readingTime} MIN READ
+                  <div className="bg-card p-8 lg:p-12 -mx-6 sm:-mx-8 lg:-mx-12 border-y border-border">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="text-[10px] font-bold tracking-[0.2em] text-foreground">
+                        DEEP DIVE
                       </span>
+                      <span className="text-[10px] text-muted-foreground/50">|</span>
+                      <span className="text-[10px] text-muted-foreground/50">
+                        {formatDate(analysisArticles[0].publishedAt)}
+                      </span>
+                      {analysisArticles[0].readingTime && (
+                        <>
+                          <span className="text-[10px] text-muted-foreground/50">|</span>
+                          <span className="text-[10px] text-muted-foreground/50">
+                            {analysisArticles[0].readingTime} MIN READ
+                          </span>
+                        </>
+                      )}
+                    </div>
+                    <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-tight mb-6 max-w-[800px]">
+                      <span className="headline-hover">
+                        {analysisArticles[0].title}
+                      </span>
+                    </h3>
+                    {analysisArticles[0].excerpt && (
+                      <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-[620px]">
+                        {analysisArticles[0].excerpt}
+                      </p>
                     )}
-                    <span className="text-[10px] font-bold tracking-[0.2em]">
-                      READ ANALYSIS --&gt;
+                    <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground group-hover:text-foreground transition-colors duration-500 mt-8 inline-block">
+                      READ ANALYSIS {"-->"}
                     </span>
                   </div>
                 </Link>
@@ -323,27 +367,25 @@ export default async function HomePage() {
 
               {/* Remaining articles in 2-column grid */}
               {analysisArticles.length > 1 && (
-                <div className="grid sm:grid-cols-2 gap-8">
+                <div className="grid lg:grid-cols-2 gap-x-12 gap-y-0 mt-12">
                   {analysisArticles.slice(1).map((article: any) => (
                     <Link
                       key={article._id}
                       href={`/article/${article.slug.current}`}
-                      className="group card-lift border-t border-border pt-6"
+                      className="group card-lift block py-8 border-b border-border"
                     >
-                      <span className="inline-block text-[9px] font-bold px-2.5 py-1 tracking-[0.15em] border border-border text-muted-foreground mb-3">
+                      <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground mb-4">
                         ANALYSIS
-                      </span>
-
-                      <p className="text-[11px] text-muted-foreground mb-2">
-                        {formatDate(article.publishedAt)}
                       </p>
 
-                      <h3 className="font-serif text-xl leading-snug mb-2 headline-hover">
-                        {article.title}
+                      <h3 className="font-serif text-2xl lg:text-3xl font-normal leading-snug mb-4 max-w-[540px]">
+                        <span className="headline-hover">
+                          {article.title}
+                        </span>
                       </h3>
 
                       {article.excerpt && (
-                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                        <p className="text-sm text-muted-foreground leading-relaxed max-w-[480px]">
                           {article.excerpt}
                         </p>
                       )}
@@ -357,19 +399,24 @@ export default async function HomePage() {
 
         {/* ───────────────────────── DATA ───────────────────────── */}
         {dataArticles && dataArticles.length > 0 && (
-          <section className="border-b border-border">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <section className="py-20 lg:py-28 border-b border-border">
+            <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12">
               {/* Section heading */}
-              <div className="flex items-center gap-4 mb-12">
-                <h2 className="font-serif text-4xl sm:text-5xl tracking-tight">
-                  Data
-                </h2>
-                <div className="flex-1 h-px bg-border" />
+              <div className="flex items-baseline justify-between mb-16">
+                <div className="flex items-baseline gap-4">
+                  <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
+                    Data
+                  </h2>
+                  <div className="hidden sm:block w-16 h-[2px] bg-foreground mb-2" />
+                </div>
                 <Link
                   href="/data"
-                  className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground hover:text-foreground transition shrink-0"
+                  className="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-500 group"
                 >
-                  VIEW ALL --&gt;
+                  VIEW ALL{" "}
+                  <span className="inline-block group-hover:translate-x-1 transition-transform duration-500">
+                    {"-->"}
+                  </span>
                 </Link>
               </div>
 
@@ -379,40 +426,35 @@ export default async function HomePage() {
                   <Link
                     key={article._id}
                     href={`/article/${article.slug.current}`}
-                    className="group flex items-center justify-between py-6 card-lift"
+                    className="group flex flex-col lg:flex-row lg:items-center justify-between py-6 lg:py-8 card-lift"
                   >
-                    <div className="flex items-center gap-6 min-w-0">
-                      {/* Tag */}
-                      <span className="hidden sm:inline-block text-[9px] font-bold px-2.5 py-1 tracking-[0.15em] border border-border text-muted-foreground shrink-0">
-                        DATA
-                      </span>
-
-                      {/* Date */}
-                      <span className="text-[11px] text-muted-foreground shrink-0">
-                        {formatDate(article.publishedAt)}
-                      </span>
-
-                      {/* Title */}
-                      <h3 className="font-serif text-lg sm:text-xl leading-snug headline-hover truncate">
-                        {article.title}
+                    <div>
+                      <div className="flex items-center gap-3 mb-3 lg:mb-0">
+                        <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground">
+                          DATA
+                        </span>
+                        <span className="text-[10px] text-muted-foreground/50">
+                          {formatDate(article.publishedAt)}
+                        </span>
+                        {article.sponsored && article.sponsorName && (
+                          <>
+                            <span className="text-[10px] text-muted-foreground/50">|</span>
+                            <span className="text-[10px] text-muted-foreground/60">
+                              Sponsored by {article.sponsorName}
+                            </span>
+                          </>
+                        )}
+                      </div>
+                      <h3 className="font-serif text-xl lg:text-2xl font-normal leading-snug max-w-[600px]">
+                        <span className="headline-hover">
+                          {article.title}
+                        </span>
                       </h3>
                     </div>
 
                     {/* Arrow */}
-                    <span className="text-muted-foreground group-hover:text-foreground transition ml-4 shrink-0">
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                      </svg>
+                    <span className="inline-block group-hover:translate-x-1 transition-transform duration-500 text-muted-foreground mt-3 lg:mt-0">
+                      {"-->"}
                     </span>
                   </Link>
                 ))}
@@ -423,19 +465,24 @@ export default async function HomePage() {
 
         {/* ───────────────────────── INTERVIEWS ───────────────────────── */}
         {interviewArticles && interviewArticles.length > 0 && (
-          <section className="border-b border-border">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <section className="py-20 lg:py-28 border-b border-border">
+            <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12">
               {/* Section heading */}
-              <div className="flex items-center gap-4 mb-12">
-                <h2 className="font-serif text-4xl sm:text-5xl tracking-tight">
-                  Interviews
-                </h2>
-                <div className="flex-1 h-px bg-border" />
+              <div className="flex items-baseline justify-between mb-16">
+                <div className="flex items-baseline gap-4">
+                  <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
+                    Interviews
+                  </h2>
+                  <div className="hidden sm:block w-16 h-[2px] bg-foreground mb-2" />
+                </div>
                 <Link
                   href="/interviews"
-                  className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground hover:text-foreground transition shrink-0"
+                  className="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-500 group"
                 >
-                  VIEW ALL --&gt;
+                  VIEW ALL{" "}
+                  <span className="inline-block group-hover:translate-x-1 transition-transform duration-500">
+                    {"-->"}
+                  </span>
                 </Link>
               </div>
 
@@ -443,85 +490,104 @@ export default async function HomePage() {
               {interviewArticles[0] && (
                 <Link
                   href={`/article/${interviewArticles[0].slug.current}`}
-                  className="group grid md:grid-cols-2 gap-8 mb-16 card-lift"
+                  className="block mb-12 group"
                 >
-                  {/* Photo */}
-                  {interviewArticles[0].featuredImage && (
-                    <div className="image-editorial aspect-[4/5] sm:aspect-[3/4] bg-muted overflow-hidden">
-                      <img
-                        src={urlFor(interviewArticles[0].featuredImage)
-                          .width(600)
-                          .height(800)
-                          .url()}
-                        alt={interviewArticles[0].title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-
-                  {/* Content */}
-                  <div className="flex flex-col justify-center">
-                    <span className="inline-block text-[9px] font-bold px-2.5 py-1 tracking-[0.15em] border border-border text-muted-foreground mb-3 self-start">
-                      INTERVIEW
-                    </span>
-
-                    <p className="text-[11px] text-muted-foreground mb-3">
-                      {formatDate(interviewArticles[0].publishedAt)}
-                    </p>
-
-                    <h3 className="font-serif text-3xl sm:text-4xl tracking-tight leading-snug mb-4 headline-hover">
-                      {interviewArticles[0].title}
-                    </h3>
-
-                    {interviewArticles[0].excerpt && (
-                      <p className="text-muted-foreground mb-6 leading-relaxed">
-                        {interviewArticles[0].excerpt}
-                      </p>
+                  <div className="grid lg:grid-cols-[320px_1fr] gap-8 lg:gap-12">
+                    {/* Photo */}
+                    {interviewArticles[0].featuredImage && (
+                      <div className="image-editorial w-full h-[320px] lg:h-[400px] bg-card">
+                        <img
+                          src={urlFor(interviewArticles[0].featuredImage)
+                            .width(640)
+                            .height(800)
+                            .url()}
+                          alt={interviewArticles[0].title}
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
                     )}
 
-                    <span className="text-[10px] font-bold tracking-[0.2em]">
-                      READ INTERVIEW --&gt;
-                    </span>
+                    {/* Content */}
+                    <div className="flex flex-col justify-center">
+                      <p className="text-[10px] font-bold tracking-[0.2em] text-foreground mb-4">
+                        INTERVIEW
+                      </p>
+
+                      <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-tight mb-5">
+                        <span className="headline-hover">
+                          {interviewArticles[0].title}
+                        </span>
+                      </h3>
+
+                      {interviewArticles[0].excerpt && (
+                        <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-[540px] mb-6">
+                          {interviewArticles[0].excerpt}
+                        </p>
+                      )}
+
+                      {interviewArticles[0].author && (
+                        <div>
+                          <p className="text-sm font-bold tracking-wide">
+                            {interviewArticles[0].author.name}
+                          </p>
+                          {interviewArticles[0].author.role && (
+                            <p className="text-[10px] tracking-[0.15em] text-muted-foreground mt-0.5">
+                              {interviewArticles[0].author.role}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </Link>
               )}
 
-              {/* Remaining interviews in 2-column grid */}
+              {/* Divider */}
+              <div className="border-t border-border mb-0" />
+
+              {/* Remaining interviews */}
               {interviewArticles.length > 1 && (
-                <div className="grid sm:grid-cols-2 gap-8">
+                <div className="grid lg:grid-cols-2 gap-x-12">
                   {interviewArticles.slice(1).map((article: any) => (
                     <Link
                       key={article._id}
                       href={`/article/${article.slug.current}`}
-                      className="group flex gap-5 card-lift"
+                      className="group card-lift flex gap-6 py-8 border-b border-border"
                     >
                       {/* Small photo */}
                       {article.featuredImage && (
-                        <div className="image-editorial w-24 h-24 sm:w-28 sm:h-28 bg-muted overflow-hidden shrink-0">
+                        <div className="image-editorial w-20 h-20 lg:w-24 lg:h-24 shrink-0 bg-card">
                           <img
                             src={urlFor(article.featuredImage)
                               .width(200)
                               .height(200)
                               .url()}
                             alt={article.title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover object-top"
                           />
                         </div>
                       )}
 
                       {/* Content */}
                       <div className="flex flex-col justify-center min-w-0">
-                        <span className="inline-block text-[9px] font-bold px-2.5 py-1 tracking-[0.15em] border border-border text-muted-foreground mb-2 self-start">
+                        <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground mb-2">
                           INTERVIEW
-                        </span>
-
-                        <p className="text-[11px] text-muted-foreground mb-1">
-                          {formatDate(article.publishedAt)}
                         </p>
 
-                        <h3 className="font-serif text-lg leading-snug headline-hover">
-                          {article.title}
+                        <h3 className="font-serif text-xl lg:text-2xl font-normal leading-snug mb-2">
+                          <span className="headline-hover">
+                            {article.title}
+                          </span>
                         </h3>
+
+                        {article.author && (
+                          <p className="text-[11px] font-bold tracking-wide text-muted-foreground">
+                            {article.author.name}
+                            {article.author.role && (
+                              <> | {article.author.role}</>
+                            )}
+                          </p>
+                        )}
                       </div>
                     </Link>
                   ))}
