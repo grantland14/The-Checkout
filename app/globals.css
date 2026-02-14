@@ -1,0 +1,120 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #FFFFFF;
+  --card: #F5F5F5;
+  --foreground: #0D0D0D;
+  --card-foreground: #0D0D0D;
+  --muted: #F5F5F5;
+  --muted-foreground: #6B6B6B;
+  --accent: #0D0D0D;
+  --accent-foreground: #FFFFFF;
+  --border: #E5E5E5;
+  --input: #E5E5E5;
+  --ring: #0D0D0D;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), 'Georgia', 'Times New Roman', serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Headline hover underline effect */
+.headline-hover {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  transition: background-size 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.headline-hover:hover,
+.group:hover .headline-hover {
+  background-size: 100% 1.5px;
+}
+
+/* Card lift effect */
+.card-lift {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-lift:hover {
+  transform: translateY(-3px);
+}
+
+/* Fade in up animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-fade-in-up-delay-1 {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.15s forwards;
+}
+
+.animate-fade-in-up-delay-2 {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.3s forwards;
+}
+
+.animate-fade-in-up-delay-3 {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.45s forwards;
+}
+
+/* Article blockquote */
+.article-blockquote {
+  border-left: 3px solid var(--foreground);
+  padding-left: 2rem;
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-style: italic;
+}
+
+/* Editorial image treatment */
+.image-editorial {
+  overflow: hidden;
+}
+
+.image-editorial img {
+  filter: grayscale(0.3) contrast(1.05) brightness(1.02);
+  transition: filter 0.7s ease, transform 0.7s ease;
+}
+
+.group:hover .image-editorial img {
+  filter: grayscale(0) contrast(1.05) brightness(1.02);
+  transform: scale(1.03);
+}
