@@ -43,7 +43,7 @@ export default async function HomePage() {
       <main>
         {/* ───────────────────────── HERO ───────────────────────── */}
         <section className="border-b border-border">
-          <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12 py-20 sm:py-28 lg:py-36 text-center">
+          <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12 pt-12 sm:pt-16 lg:pt-20 pb-20 sm:pb-28 lg:pb-36 text-center">
             {/* Kicker */}
             <p className="animate-fade-in-up text-[10px] sm:text-[11px] font-bold tracking-[0.25em] text-muted-foreground mb-6 sm:mb-8">
               {siteSettings?.heroKicker || "EUROPEAN MARKET INTELLIGENCE"}
