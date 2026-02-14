@@ -211,6 +211,12 @@ export async function getAuthorBySlug(slug: string) {
 }
 
 // ---------- Pages ----------
+export async function getAllPageSlugs() {
+  return client.fetch(`*[_type == "page" && defined(slug.current)]{
+    "slug": slug.current
+  }`)
+}
+
 export async function getPageBySlug(slug: string) {
   return client.fetch(`*[_type == "page" && slug.current == $slug][0]{
     _id,
