@@ -256,34 +256,36 @@ export default async function ArticlePage({
           }
 
           return (
-            <div className="mt-12 pt-10 border-t border-border">
-              <div className="grid sm:grid-cols-2 gap-8 pb-16">
-                {/* Left: Tagline */}
-                <div>
-                  <p className="font-serif text-2xl sm:text-3xl tracking-tight leading-snug mb-4">
-                    {renderTagline()}
-                  </p>
-                  <p className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground">
-                    {badge}
-                  </p>
-                </div>
+            <div className="mt-14 -mx-6 sm:-mx-8 bg-card border-y border-border">
+              <div className="max-w-[720px] mx-auto px-6 sm:px-8 py-14 sm:py-16">
+                <div className="grid sm:grid-cols-2 gap-8">
+                  {/* Left: Tagline */}
+                  <div>
+                    <p className="font-serif text-2xl sm:text-3xl tracking-tight leading-snug mb-4">
+                      {renderTagline()}
+                    </p>
+                    <p className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground">
+                      {badge}
+                    </p>
+                  </div>
 
-                {/* Right: Description */}
-                <div className="flex flex-col justify-center">
-                  <p className="font-bold text-sm mb-2">
-                    {heading}
-                  </p>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    {description}
-                  </p>
-                  <a
-                    href={linkUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[10px] font-bold tracking-[0.2em] hover:text-muted-foreground transition-colors duration-500"
-                  >
-                    {`${linkText} -->`}
-                  </a>
+                  {/* Right: Description */}
+                  <div className="flex flex-col justify-center">
+                    <p className="font-bold text-sm mb-2">
+                      {heading}
+                    </p>
+                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                      {description}
+                    </p>
+                    <a
+                      href={linkUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[10px] font-bold tracking-[0.2em] hover:text-muted-foreground transition-colors duration-500"
+                    >
+                      {`${linkText} -->`}
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
