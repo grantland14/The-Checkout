@@ -128,24 +128,10 @@ export default async function HomePage() {
             <div className="max-w-[1200px] mx-auto">
             <div className="grid lg:grid-cols-[1fr_2fr]">
               {/* Left panel */}
-              <div className="px-6 sm:px-8 lg:px-12 py-12 lg:py-16 flex flex-col justify-between lg:border-r border-background/10">
-                <div>
-                  <p className="text-[10px] font-bold tracking-[0.25em] text-background/50 mb-4">
-                    RIGHT NOW
-                  </p>
-                  <h2 className="font-serif text-4xl lg:text-5xl font-normal tracking-tight leading-[1.05]">
-                    Featured<br />Stories
-                  </h2>
-                </div>
-                <Link
-                  href="/news"
-                  className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] mt-10 text-background/50 hover:text-background transition-colors duration-500 group"
-                >
-                  VIEW ALL{" "}
-                  <span className="inline-block group-hover:translate-x-1 transition-transform duration-500">
-                    {"-->"}
-                  </span>
-                </Link>
+              <div className="px-6 sm:px-8 lg:px-12 py-12 lg:py-16 flex flex-col justify-center lg:border-r border-background/10">
+                <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight leading-[1.05]">
+                  Featured<br />Stories
+                </h2>
               </div>
 
               {/* Stories grid */}
@@ -179,7 +165,7 @@ export default async function HomePage() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-serif text-lg lg:text-xl font-normal tracking-tight leading-snug text-background/90 group-hover:text-background transition-colors duration-500">
+                    <h3 className="font-serif text-xl lg:text-xl font-normal tracking-tight leading-snug text-background/90 group-hover:text-background transition-colors duration-500">
                       <span className="headline-hover-white">{article.title}</span>
                     </h3>
                   </Link>
