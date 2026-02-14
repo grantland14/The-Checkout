@@ -336,7 +336,7 @@ export default async function HomePage() {
                   href={`/article/${analysisArticles[0].slug.current}`}
                   className="block mb-12 group"
                 >
-                  <div className="bg-card p-8 lg:p-12 -mx-6 sm:-mx-8 lg:-mx-12 border-y border-border">
+                  <div className="bg-card p-8 lg:p-12 border-y border-border">
                     <div className="flex items-center gap-3 mb-4">
                       <span className="text-[10px] font-bold tracking-[0.2em] text-foreground">
                         DEEP DIVE
