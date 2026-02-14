@@ -225,8 +225,8 @@ export default async function HomePage() {
                       <div className="image-editorial w-full h-[260px] lg:h-[380px] bg-card">
                         <img
                           src={urlFor(newsArticles[0].featuredImage)
-                            .width(800)
-                            .height(500)
+                            .width(1600)
+                            .height(1000)
                             .url()}
                           alt={newsArticles[0].title}
                           className="w-full h-full object-cover"
@@ -274,8 +274,8 @@ export default async function HomePage() {
                         <div className="image-editorial w-full h-[200px] bg-card mb-5">
                           <img
                             src={urlFor(article.featuredImage)
-                              .width(600)
-                              .height(375)
+                              .width(1200)
+                              .height(750)
                               .url()}
                             alt={article.title}
                             className="w-full h-full object-cover"
@@ -506,8 +506,8 @@ export default async function HomePage() {
                       <div className="image-editorial w-full h-[320px] lg:h-[400px] bg-card">
                         <img
                           src={urlFor(interviewArticles[0].featuredImage)
-                            .width(640)
-                            .height(800)
+                            .width(1280)
+                            .height(1600)
                             .url()}
                           alt={interviewArticles[0].title}
                           className="w-full h-full object-cover object-top"
@@ -567,8 +567,8 @@ export default async function HomePage() {
                         <div className="image-editorial w-20 h-20 lg:w-24 lg:h-24 shrink-0 bg-card">
                           <img
                             src={urlFor(article.featuredImage)
-                              .width(200)
-                              .height(200)
+                              .width(400)
+                              .height(400)
                               .url()}
                             alt={article.title}
                             className="w-full h-full object-cover object-top"

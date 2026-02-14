@@ -89,7 +89,7 @@ const portableTextComponents: PortableTextComponents = {
     image: ({ value }) => (
       <figure className="my-10">
         <img
-          src={urlFor(value).width(1200).url()}
+          src={urlFor(value).width(2400).url()}
           alt={value.alt || ""}
           className="w-full"
         />
@@ -171,8 +171,8 @@ export default async function ArticlePage({
                   {article.author.photo ? (
                     <img
                       src={urlFor(article.author.photo)
-                        .width(72)
-                        .height(72)
+                        .width(144)
+                        .height(144)
                         .url()}
                       alt={article.author.name}
                       className="w-full h-full object-cover"
@@ -199,8 +199,8 @@ export default async function ArticlePage({
           <div className="image-editorial w-full h-[600px] bg-card overflow-hidden">
             <img
               src={urlFor(article.featuredImage)
-                .width(1200)
-                .height(600)
+                .width(2400)
+                .height(1200)
                 .url()}
               alt={article.title}
               className="w-full h-full object-cover"
@@ -310,8 +310,8 @@ export default async function ArticlePage({
                       {related.featuredImage ? (
                         <img
                           src={urlFor(related.featuredImage)
-                            .width(600)
-                            .height(375)
+                            .width(1200)
+                            .height(750)
                             .url()}
                           alt={related.title}
                           className="w-full h-full object-cover"

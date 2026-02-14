@@ -79,8 +79,8 @@ export default async function CategoryPage({
                       <div className="w-full lg:w-80 h-48 bg-card shrink-0 image-editorial overflow-hidden">
                         <img
                           src={urlFor(article.featuredImage)
-                            .width(640)
-                            .height(384)
+                            .width(1280)
+                            .height(768)
                             .url()}
                           alt={article.title}
                           className="w-full h-full object-cover"
