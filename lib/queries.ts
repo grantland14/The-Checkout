@@ -16,7 +16,8 @@ export async function getSiteSettings() {
     socialLinks,
     footerTagline,
     navigation,
-    secondaryNavigation
+    secondaryNavigation,
+    veniceCta
   }`)
 }
 

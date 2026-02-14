@@ -198,45 +198,72 @@ export default async function ArticlePage({
         </div>
 
         {/* Venice CTA */}
-        <div className="mt-12 pt-10 border-t border-border">
-          <div className="grid sm:grid-cols-2 gap-8 pb-16">
-            {/* Left: Tagline */}
-            <div>
-              <p className="font-serif text-2xl sm:text-3xl tracking-tight leading-snug mb-4">
-                The room where{" "}
-                <span className="bg-foreground text-background px-1.5 py-0.5">
-                  7-figure
-                </span>{" "}
-                European founders{" "}
-                <span className="bg-foreground text-background px-1.5 py-0.5">
-                  connect
-                </span>
-                .
-              </p>
-              <p className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground">
-                VFN
-              </p>
-            </div>
+        {(() => {
+          const cta = siteSettings?.veniceCta
+          const tagline = cta?.tagline || "The room where 7-figure European founders connect."
+          const highlights = cta?.highlightWords || ["7-figure", "connect"]
+          const badge = cta?.badge || "VFN"
+          const heading = cta?.heading || "A private network for European founders and operators."
+          const description = cta?.description || "Venice Founders Network brings together the most ambitious DTC founders, operators, and investors building the future of European commerce. Dinners, deal flow, and direct introductions."
+          const linkText = cta?.linkText || "Apply to Join"
+          const linkUrl = cta?.linkUrl || "https://www.venicefounders.com/"
 
-            {/* Right: Description */}
-            <div className="flex flex-col justify-center">
-              <p className="font-bold text-sm mb-2">
-                A private network for European founders and operators.
-              </p>
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                Venice Founders Network brings together the most ambitious DTC founders, operators, and investors building the future of European commerce. Dinners, deal flow, and direct introductions.
-              </p>
-              <a
-                href="https://www.venicefounders.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[10px] font-bold tracking-[0.2em] hover:text-muted-foreground transition-colors duration-500"
-              >
-                {"Apply to Join -->"}
-              </a>
+          // Build the tagline with highlighted words
+          const renderTagline = () => {
+            let result: React.ReactNode[] = []
+            let remaining = tagline
+            highlights.forEach((word: string, idx: number) => {
+              const index = remaining.indexOf(word)
+              if (index !== -1) {
+                if (index > 0) {
+                  result.push(remaining.slice(0, index))
+                }
+                result.push(
+                  <span key={idx} className="bg-foreground text-background px-1.5 py-0.5">
+                    {word}
+                  </span>
+                )
+                remaining = remaining.slice(index + word.length)
+              }
+            })
+            if (remaining) result.push(remaining)
+            return result
+          }
+
+          return (
+            <div className="mt-12 pt-10 border-t border-border">
+              <div className="grid sm:grid-cols-2 gap-8 pb-16">
+                {/* Left: Tagline */}
+                <div>
+                  <p className="font-serif text-2xl sm:text-3xl tracking-tight leading-snug mb-4">
+                    {renderTagline()}
+                  </p>
+                  <p className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground">
+                    {badge}
+                  </p>
+                </div>
+
+                {/* Right: Description */}
+                <div className="flex flex-col justify-center">
+                  <p className="font-bold text-sm mb-2">
+                    {heading}
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                    {description}
+                  </p>
+                  <a
+                    href={linkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] font-bold tracking-[0.2em] hover:text-muted-foreground transition-colors duration-500"
+                  >
+                    {`${linkText} -->`}
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          )
+        })()}
       </article>
 
       {/* Up Next */}
