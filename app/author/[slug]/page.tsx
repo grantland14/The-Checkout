@@ -1,4 +1,4 @@
-export const revalidate = 60
+export const revalidate = 86400
 export const dynamicParams = true
 
 import { notFound } from "next/navigation"
