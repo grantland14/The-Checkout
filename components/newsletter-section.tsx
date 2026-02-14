@@ -13,7 +13,7 @@ export default function NewsletterSection({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         {/* Kicker */}
         <p className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground mb-4">
-          THE BRIEFING
+          {siteSettings?.newsletterKicker || "THE BRIEFING"}
         </p>
 
         {/* Headline */}
@@ -23,8 +23,7 @@ export default function NewsletterSection({
 
         {/* Subtitle */}
         <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-10">
-          A weekly briefing for the people building European commerce. Free,
-          sharp, opinionated.
+          {siteSettings?.newsletterSubtitle || "A weekly briefing for the people building European commerce. Free, sharp, opinionated."}
         </p>
 
         {/* Email Form */}

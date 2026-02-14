@@ -14,6 +14,8 @@ export async function getSiteSettings() {
     heroFormNote,
     openRate,
     trustedByCompanies,
+    newsletterKicker,
+    newsletterSubtitle,
     socialLinks,
     footerTagline,
     navigation,
@@ -89,8 +91,11 @@ export async function getAllArticleSlugs() {
   }`)
 }
 
-export async function getLatestArticles(limit = 12) {
-  return client.fetch(`*[_type == "article"] | order(publishedAt desc)[0...$limit]{
+export async function getLatestArticles(limit = 12, excludeId?: string) {
+  const filter = excludeId
+    ? `*[_type == "article" && _id != $excludeId]`
+    : `*[_type == "article"]`
+  return client.fetch(`${filter} | order(publishedAt desc)[0...$limit]{
     _id,
     title,
     slug,
@@ -101,7 +106,7 @@ export async function getLatestArticles(limit = 12) {
     category->{title, slug},
     author->{name, slug, role, photo},
     "readingTime": round(length(pt::text(body)) / 5 / 200)
-  }`, { limit })
+  }`, { limit, excludeId })
 }
 
 // ---------- Categories ----------
