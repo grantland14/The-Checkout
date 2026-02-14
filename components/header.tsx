@@ -27,7 +27,7 @@ export default function Header({ siteSettings }: { siteSettings: any }) {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center ml-6 self-stretch">
+          <nav className="hidden md:flex items-center ml-6 self-stretch border-l border-border">
             {siteSettings?.navigation?.map(
               (item: { label: string; url: string }, index: number) => (
                 <Link
