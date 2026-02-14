@@ -291,6 +291,7 @@ export default async function ArticlePage({
             </div>
           )
         })()}
+        <div className="pb-14 lg:pb-16" />
       </article>
 
       {/* Up Next */}
