@@ -5,6 +5,11 @@ export async function getSiteSettings() {
   return client.fetch(`*[_type == "siteSettings"][0]{
     title,
     description,
+    siteUrl,
+    metaTitle,
+    metaDescription,
+    favicon,
+    ogImage,
     logo,
     logoLight,
     heroHeadline,
