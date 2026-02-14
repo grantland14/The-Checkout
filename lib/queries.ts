@@ -18,6 +18,8 @@ export async function getSiteSettings() {
     newsletterSubtitle,
     socialLinks,
     footerTagline,
+    footerColumns,
+    footerCta,
     subscribePageKicker,
     subscribePageHeadline,
     subscribePageSubtitle,

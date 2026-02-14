@@ -6,6 +6,9 @@ export default function Footer({ siteSettings }: { siteSettings: any }) {
   const firstLine = words.slice(0, Math.ceil(words.length / 2)).join(" ")
   const secondLine = words.slice(Math.ceil(words.length / 2)).join(" ")
 
+  const footerColumns = siteSettings?.footerColumns || []
+  const footerCta = siteSettings?.footerCta
+
   return (
     <footer className="bg-foreground text-background">
       {/* Big Logo Section */}
@@ -25,150 +28,70 @@ export default function Footer({ siteSettings }: { siteSettings: any }) {
       {/* Links Grid */}
       <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12 pb-12 sm:pb-16">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-12">
-          {/* CONTENT */}
-          <div>
-            <h4 className="text-[10px] font-bold tracking-[0.2em] text-background/60 mb-4">
-              CONTENT
-            </h4>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/feed"
-                  className="text-sm text-background/50 hover:text-background transition"
-                >
-                  Feed
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/data"
-                  className="text-sm text-background/50 hover:text-background transition"
-                >
-                  Data
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/reports"
-                  className="text-sm text-background/50 hover:text-background transition"
-                >
-                  Reports
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/podcast"
-                  className="text-sm text-background/50 hover:text-background transition"
-                >
-                  Podcast
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Dynamic Link Columns */}
+          {footerColumns.map((column: any, colIndex: number) => (
+            <div key={colIndex}>
+              <h4 className="text-[10px] font-bold tracking-[0.2em] text-background/60 mb-4">
+                {column.title?.toUpperCase()}
+              </h4>
+              <ul className="space-y-3">
+                {column.links?.map(
+                  (link: { label: string; url: string }, linkIndex: number) => {
+                    const isExternal =
+                      link.url?.startsWith("http://") ||
+                      link.url?.startsWith("https://")
+                    return (
+                      <li key={linkIndex}>
+                        {isExternal ? (
+                          <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-background/50 hover:text-background transition"
+                          >
+                            {link.label}
+                          </a>
+                        ) : (
+                          <Link
+                            href={link.url || "/"}
+                            className="text-sm text-background/50 hover:text-background transition"
+                          >
+                            {link.label}
+                          </Link>
+                        )}
+                      </li>
+                    )
+                  }
+                )}
+              </ul>
+            </div>
+          ))}
 
-          {/* COMPANY */}
-          <div>
-            <h4 className="text-[10px] font-bold tracking-[0.2em] text-background/60 mb-4">
-              COMPANY
-            </h4>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/about"
-                  className="text-sm text-background/50 hover:text-background transition"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/team"
-                  className="text-sm text-background/50 hover:text-background transition"
-                >
-                  Team
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/careers"
-                  className="text-sm text-background/50 hover:text-background transition"
-                >
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-sm text-background/50 hover:text-background transition"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* SOCIAL */}
-          <div>
-            <h4 className="text-[10px] font-bold tracking-[0.2em] text-background/60 mb-4">
-              SOCIAL
-            </h4>
-            <ul className="space-y-3">
-              {siteSettings?.socialLinks?.twitter && (
-                <li>
-                  <a
-                    href={siteSettings.socialLinks.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-background/50 hover:text-background transition"
-                  >
-                    Twitter/X
-                  </a>
-                </li>
+          {/* Footer CTA (4th column) */}
+          {footerCta && (footerCta.heading || footerCta.subtitle) && (
+            <div>
+              {footerCta.heading && (
+                <h4 className="text-[10px] font-bold tracking-[0.2em] text-background/60 mb-4">
+                  {footerCta.heading.toUpperCase()}
+                </h4>
               )}
-              {siteSettings?.socialLinks?.linkedin && (
-                <li>
-                  <a
-                    href={siteSettings.socialLinks.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-background/50 hover:text-background transition"
-                  >
-                    LinkedIn
-                  </a>
-                </li>
+              {footerCta.subtitle && (
+                <p className="text-sm text-background/50 mb-3">
+                  {footerCta.subtitle}
+                </p>
               )}
-              {siteSettings?.socialLinks?.youtube && (
-                <li>
-                  <a
-                    href={siteSettings.socialLinks.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-background/50 hover:text-background transition"
-                  >
-                    YouTube
-                  </a>
-                </li>
+              {footerCta.linkUrl && (
+                <a
+                  href={footerCta.linkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-background/50 hover:text-background transition font-bold"
+                >
+                  {footerCta.linkText || "LEARN MORE -->"}
+                </a>
               )}
-            </ul>
-          </div>
-
-          {/* VENICE NETWORK */}
-          <div>
-            <h4 className="text-[10px] font-bold tracking-[0.2em] text-background/60 mb-4">
-              VENICE NETWORK
-            </h4>
-            <p className="text-sm text-background/50 mb-3">
-              Private network for 7-figure European founders.
-            </p>
-            <a
-              href="https://www.venicefounders.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-background/50 hover:text-background transition font-bold"
-            >
-              APPLY --&gt;
-            </a>
-          </div>
+            </div>
+          )}
         </div>
       </div>
 
