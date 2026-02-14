@@ -166,7 +166,10 @@ export default async function ArticlePage({
           {/* Author Byline */}
           {article.author && (
             <div className="flex items-center py-6 border-t border-b border-border">
-              <div className="flex items-center gap-3">
+              <Link
+                href={`/author/${article.author.slug?.current}`}
+                className="flex items-center gap-3 group"
+              >
                 <div className="w-9 h-9 bg-card rounded-full overflow-hidden shrink-0">
                   {article.author.photo ? (
                     <img
@@ -182,12 +185,12 @@ export default async function ArticlePage({
                   )}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold leading-tight">{article.author.name}</p>
+                  <p className="text-sm font-semibold leading-tight group-hover:text-muted-foreground transition-colors duration-500">{article.author.name}</p>
                   {article.author.role && (
                     <p className="text-xs text-muted-foreground">{article.author.role}</p>
                   )}
                 </div>
-              </div>
+              </Link>
             </div>
           )}
         </div>

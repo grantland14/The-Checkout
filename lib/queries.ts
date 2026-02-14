@@ -176,6 +176,12 @@ export async function getBrandBySlug(slug: string) {
 }
 
 // ---------- Authors ----------
+export async function getAllAuthorSlugs() {
+  return client.fetch(`*[_type == "author" && defined(slug.current)]{
+    "slug": slug.current
+  }`)
+}
+
 export async function getAuthorBySlug(slug: string) {
   return client.fetch(`*[_type == "author" && slug.current == $slug][0]{
     _id,
