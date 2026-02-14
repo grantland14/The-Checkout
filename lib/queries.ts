@@ -31,7 +31,12 @@ export async function getSiteSettings() {
     subscribePageFormNote,
     navigation,
     secondaryNavigation,
-    veniceCta
+    veniceCta,
+    articleCtaKicker,
+    articleCtaHeadline,
+    articleCtaSubtitle,
+    articleCtaButtonText,
+    articleCtaNote
   }`)
 }
 

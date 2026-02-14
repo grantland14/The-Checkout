@@ -222,8 +222,46 @@ export default async function ArticlePage({
           )}
         </div>
 
+        {/* Inline Subscribe CTA */}
+        <div className="-mx-6 sm:-mx-8 mt-14 lg:mt-16 bg-card border-y border-border">
+          <div className="px-6 sm:px-8 py-12 sm:py-16">
+            <p className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground mb-4">
+              {siteSettings?.articleCtaKicker || "FREE WEEKLY NEWSLETTER"}
+            </p>
+            <h3 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight leading-[1.15] mb-4">
+              {siteSettings?.articleCtaHeadline || "Enjoyed this? Get the next one straight to your inbox."}
+            </h3>
+            <p className="text-base text-muted-foreground leading-relaxed mb-8 max-w-[540px]">
+              {siteSettings?.articleCtaSubtitle
+                || (siteSettings?.subscriberCount
+                  ? `Join ${siteSettings.subscriberCount}+ founders, operators, and investors who read The Checkout every week.`
+                  : "Join thousands of founders, operators, and investors who read The Checkout every week.")}
+            </p>
+            <form className="flex flex-col sm:flex-row gap-3 sm:gap-0 mb-4">
+              <input
+                type="email"
+                placeholder="NAME@EMAIL.COM"
+                required
+                className="flex-1 bg-background border border-border px-5 py-4 text-sm font-medium tracking-widest placeholder:text-muted-foreground/50 focus:outline-none focus:border-foreground transition-colors duration-500"
+              />
+              <button
+                type="submit"
+                className="bg-foreground text-background px-8 py-4 font-bold text-sm tracking-widest hover:bg-foreground/90 transition-all duration-500 shrink-0"
+              >
+                {siteSettings?.articleCtaButtonText || "SUBSCRIBE FREE"}
+              </button>
+            </form>
+            <p className="text-xs text-muted-foreground">
+              {siteSettings?.articleCtaNote || "No spam. Unsubscribe anytime."}
+              {siteSettings?.openRate && (
+                <span className="ml-2 text-foreground/60 font-medium">{siteSettings.openRate} open rate</span>
+              )}
+            </p>
+          </div>
+        </div>
+
         {/* Divider */}
-        <div className="-mx-6 sm:-mx-8 mt-14 lg:mt-16 mb-10 lg:mb-12 border-t border-border" />
+        <div className="-mx-6 sm:-mx-8 mt-10 lg:mt-12 mb-10 lg:mb-12 border-t border-border" />
 
         {/* Venice CTA */}
         {(() => {
