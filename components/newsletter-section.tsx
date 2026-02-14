@@ -1,3 +1,5 @@
+import { urlFor } from "@/lib/sanity"
+
 export default function NewsletterSection({
   siteSettings,
 }: {
@@ -61,15 +63,22 @@ export default function NewsletterSection({
               <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground mb-4">
                 TRUSTED BY LEADING COMPANIES AND FOUNDERS
               </p>
-              <div className="flex flex-wrap gap-x-6 gap-y-2">
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
                 {siteSettings.trustedByCompanies.map(
-                  (company: string, index: number) => (
-                    <span
-                      key={index}
-                      className="font-serif text-lg sm:text-xl text-muted-foreground"
-                    >
-                      {company}
-                    </span>
+                  (company: any, index: number) => (
+                    <div key={index} className="opacity-50">
+                      {company.logo ? (
+                        <img
+                          src={urlFor(company.logo).height(32).url()}
+                          alt={company.name || "Company logo"}
+                          className="h-6 sm:h-8 w-auto object-contain"
+                        />
+                      ) : (
+                        <span className="font-serif text-lg sm:text-xl text-muted-foreground">
+                          {company.name}
+                        </span>
+                      )}
+                    </div>
                   )
                 )}
               </div>

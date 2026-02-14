@@ -100,13 +100,20 @@ export default async function HomePage() {
                   </p>
                   <div className="flex flex-wrap justify-center items-center gap-x-12 lg:gap-x-16 gap-y-6">
                     {siteSettings.trustedByCompanies.map(
-                      (company: string, index: number) => (
-                        <span
-                          key={index}
-                          className="font-serif text-xl lg:text-2xl text-muted-foreground/40 hover:text-foreground transition-colors duration-500 cursor-pointer"
-                        >
-                          {company}
-                        </span>
+                      (company: any, index: number) => (
+                        <div key={index} className="opacity-40 hover:opacity-100 transition-opacity duration-500">
+                          {company.logo ? (
+                            <img
+                              src={urlFor(company.logo).height(40).url()}
+                              alt={company.name || "Company logo"}
+                              className="h-8 lg:h-10 w-auto object-contain"
+                            />
+                          ) : (
+                            <span className="font-serif text-xl lg:text-2xl text-muted-foreground">
+                              {company.name}
+                            </span>
+                          )}
+                        </div>
                       )
                     )}
                   </div>
