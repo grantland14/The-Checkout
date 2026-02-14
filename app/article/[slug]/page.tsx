@@ -186,9 +186,25 @@ export default async function ArticlePage({
         </div>
       </header>
 
+      {/* Featured Image */}
+      {article.featuredImage && (
+        <div className="max-w-[720px] mx-auto px-6 sm:px-8 mb-10">
+          <div className="image-editorial w-full h-[600px] bg-card overflow-hidden">
+            <img
+              src={urlFor(article.featuredImage)
+                .width(1200)
+                .height(600)
+                .url()}
+              alt={article.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      )}
+
       {/* Article Body */}
       <article className="max-w-[720px] mx-auto px-6 sm:px-8">
-        <div className="pt-10 pb-14 lg:pb-16">
+        <div className="pb-14 lg:pb-16">
           {article.body && (
             <PortableText
               value={article.body}
