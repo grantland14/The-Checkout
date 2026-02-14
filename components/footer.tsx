@@ -9,7 +9,7 @@ export default function Footer({ siteSettings }: { siteSettings: any }) {
   return (
     <footer className="bg-foreground text-background">
       {/* Big Logo Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-12 sm:pb-16">
+      <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12 pt-16 sm:pt-24 pb-12 sm:pb-16">
         <div className="font-black text-4xl sm:text-6xl lg:text-8xl text-background/90 leading-[0.9] tracking-tight">
           <div>{firstLine}</div>
           <div>{secondLine}</div>
@@ -23,7 +23,7 @@ export default function Footer({ siteSettings }: { siteSettings: any }) {
       </div>
 
       {/* Links Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16">
+      <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12 pb-12 sm:pb-16">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-12">
           {/* CONTENT */}
           <div>
@@ -174,7 +174,7 @@ export default function Footer({ siteSettings }: { siteSettings: any }) {
 
       {/* Bottom Bar */}
       <div className="border-t border-background/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[10px] tracking-[0.2em] text-background/40">
             &copy; 2026 {title.toUpperCase()}. ALL RIGHTS RESERVED.
           </p>

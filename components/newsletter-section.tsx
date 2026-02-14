@@ -10,7 +10,7 @@ export default function NewsletterSection({
       {/* Top accent bar */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-foreground" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-24">
         {/* Kicker */}
         <p className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground mb-4">
           {siteSettings?.newsletterKicker || "THE BRIEFING"}
