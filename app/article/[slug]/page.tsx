@@ -12,6 +12,7 @@ import {
   getSiteSettings,
   getArticleBySlug,
   getAllArticleSlugs,
+  getLatestArticles,
 } from "@/lib/queries"
 
 function formatDate(date: string) {
@@ -117,6 +118,12 @@ export default async function ArticlePage({
   if (!article) {
     notFound()
   }
+
+  // If no related articles are set, fall back to latest articles
+  const hasRelated = article.relatedArticles && article.relatedArticles.length > 0
+  const upNextArticles = hasRelated
+    ? article.relatedArticles.slice(0, 3)
+    : await getLatestArticles(3, article._id)
 
   return (
     <div className="min-h-screen bg-background">
@@ -283,7 +290,7 @@ export default async function ArticlePage({
       </article>
 
       {/* Up Next */}
-      {article.relatedArticles && article.relatedArticles.length > 0 && (
+      {upNextArticles && upNextArticles.length > 0 && (
         <section className="border-t border-border">
           <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-24">
             <div className="flex items-baseline gap-4 mb-14">
@@ -292,9 +299,7 @@ export default async function ArticlePage({
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
-              {article.relatedArticles
-                .slice(0, 3)
-                .map((related: any) => (
+              {upNextArticles.map((related: any) => (
                   <Link
                     key={related._id}
                     href={`/article/${related.slug.current}`}
