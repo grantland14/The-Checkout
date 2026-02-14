@@ -36,13 +36,10 @@ export default function Footer({ siteSettings }: { siteSettings: any }) {
               </h4>
               <ul className="space-y-3">
                 {column.links?.map(
-                  (link: { label: string; url: string }, linkIndex: number) => {
-                    const isExternal =
-                      link.url?.startsWith("http://") ||
-                      link.url?.startsWith("https://")
+                  (link: { label: string; url: string; openInNewTab?: boolean }, linkIndex: number) => {
                     return (
                       <li key={linkIndex}>
-                        {isExternal ? (
+                        {link.openInNewTab ? (
                           <a
                             href={link.url}
                             target="_blank"
