@@ -76,11 +76,10 @@ export default async function CategoryPage({
                   >
                     {/* Image */}
                     {article.featuredImage && (
-                      <div className="w-full lg:w-80 h-48 bg-card shrink-0 image-editorial overflow-hidden">
+                      <div className="w-full lg:w-80 aspect-[5/3] lg:aspect-auto lg:h-48 bg-card shrink-0 image-editorial overflow-hidden">
                         <img
                           src={urlFor(article.featuredImage)
-                            .width(1280)
-                            .height(768)
+                            .width(800)
                             .url()}
                           alt={article.title}
                           className="w-full h-full object-cover"
