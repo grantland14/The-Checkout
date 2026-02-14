@@ -303,7 +303,7 @@ export default async function ArticlePage({
           <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-24">
             <div className="flex items-baseline gap-4 mb-14">
               <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">Up Next</h2>
-              <div className="hidden sm:block w-16 h-[2px] bg-foreground mb-2" />
+              <div className="w-16 h-[2px] bg-foreground mb-2" />
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">

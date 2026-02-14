@@ -200,7 +200,7 @@ export default async function HomePage() {
                   <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
                     News
                   </h2>
-                  <div className="hidden sm:block w-16 h-[2px] bg-foreground mb-2" />
+                  <div className="w-16 h-[2px] bg-foreground mb-2" />
                 </div>
                 <Link
                   href="/news"
@@ -317,7 +317,7 @@ export default async function HomePage() {
                   <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
                     Analysis
                   </h2>
-                  <div className="hidden sm:block w-16 h-[2px] bg-foreground mb-2" />
+                  <div className="w-16 h-[2px] bg-foreground mb-2" />
                 </div>
                 <Link
                   href="/analysis"
@@ -413,7 +413,7 @@ export default async function HomePage() {
                   <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
                     Data
                   </h2>
-                  <div className="hidden sm:block w-16 h-[2px] bg-foreground mb-2" />
+                  <div className="w-16 h-[2px] bg-foreground mb-2" />
                 </div>
                 <Link
                   href="/data"
@@ -479,7 +479,7 @@ export default async function HomePage() {
                   <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
                     Interviews
                   </h2>
-                  <div className="hidden sm:block w-16 h-[2px] bg-foreground mb-2" />
+                  <div className="w-16 h-[2px] bg-foreground mb-2" />
                 </div>
                 <Link
                   href="/interviews"

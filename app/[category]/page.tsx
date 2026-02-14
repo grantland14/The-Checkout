@@ -131,7 +131,7 @@ export default async function CategoryOrPage({
                 <h1 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
                   {categoryData.title}
                 </h1>
-                <div className="hidden sm:block w-16 h-[2px] bg-foreground mb-1" />
+                <div className="w-16 h-[2px] bg-foreground mb-1" />
               </div>
               {categoryData.description && (
                 <p className="text-lg text-muted-foreground max-w-2xl">
