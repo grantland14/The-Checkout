@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { getSiteSettings } from "@/lib/queries"

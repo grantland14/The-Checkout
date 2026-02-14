@@ -1,3 +1,6 @@
+export const revalidate = 60
+export const dynamicParams = true
+
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
