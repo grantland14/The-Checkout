@@ -180,7 +180,7 @@ export default async function HomePage() {
 
                     {/* Title */}
                     <h3 className="font-serif text-lg lg:text-xl font-normal tracking-tight leading-snug text-background/90 group-hover:text-background transition-colors duration-500">
-                      {article.title}
+                      <span className="headline-hover-white">{article.title}</span>
                     </h3>
                   </Link>
                 ))}

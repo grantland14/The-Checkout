@@ -88,6 +88,20 @@
   background-size: 100% 1.5px;
 }
 
+/* White variant for dark backgrounds */
+.headline-hover-white {
+  display: inline;
+  background-image: linear-gradient(var(--background), var(--background));
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  transition: background-size 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.group:hover .headline-hover-white,
+.headline-hover-white:hover {
+  background-size: 100% 1.5px;
+}
+
 /* Card lift on hover */
 .card-lift {
   transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), background-color 0.5s ease;
