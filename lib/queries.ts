@@ -18,6 +18,10 @@ export async function getSiteSettings() {
     newsletterSubtitle,
     socialLinks,
     footerTagline,
+    subscribePageKicker,
+    subscribePageHeadline,
+    subscribePageSubtitle,
+    subscribePageFormNote,
     navigation,
     secondaryNavigation,
     veniceCta
