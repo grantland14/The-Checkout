@@ -223,9 +223,7 @@ export default async function ArticlePage({
         </div>
 
         {/* Divider */}
-        <div className="py-14 lg:py-16">
-          <div className="w-16 h-[2px] bg-foreground" />
-        </div>
+        <div className="-mx-6 sm:-mx-8 mt-14 lg:mt-16 mb-10 lg:mb-12 border-t border-border" />
 
         {/* Venice CTA */}
         {(() => {
@@ -296,7 +294,7 @@ export default async function ArticlePage({
             </div>
           )
         })()}
-        <div className="py-14 lg:py-16" />
+        <div className="pb-10 lg:pb-12" />
       </article>
 
       {/* Up Next */}
