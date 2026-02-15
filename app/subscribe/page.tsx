@@ -42,7 +42,7 @@ export default async function SubscribePage() {
             />
             <button
               type="submit"
-              className="bg-foreground text-background px-8 py-4 font-bold text-sm tracking-widest hover:bg-foreground/90 transition-all duration-500 shrink-0"
+              className="bg-foreground text-background px-8 py-4 font-bold text-sm tracking-widest btn-subscribe transition-all duration-300 shrink-0"
             >
               SUBSCRIBE FREE
             </button>

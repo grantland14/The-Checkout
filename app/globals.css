@@ -204,6 +204,29 @@
   animation: scroll-right 30s linear infinite;
 }
 
+/* Subscribe button hover — invert fill */
+.btn-subscribe {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.btn-subscribe::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--background);
+  z-index: -1;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.btn-subscribe:hover {
+  color: var(--foreground);
+}
+.btn-subscribe:hover::before {
+  transform: translateY(0);
+}
+
 /* Article blockquote styling */
 .prose blockquote,
 .article-blockquote {

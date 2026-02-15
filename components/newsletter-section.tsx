@@ -36,7 +36,7 @@ export default function NewsletterSection({
           />
           <button
             type="submit"
-            className="bg-foreground text-background px-6 py-3 font-bold text-[10px] tracking-[0.2em] hover:bg-foreground/90 transition shrink-0"
+            className="bg-foreground text-background px-6 py-3 font-bold text-[10px] tracking-[0.2em] btn-subscribe transition-all duration-300 shrink-0"
           >
             SUBSCRIBE
           </button>

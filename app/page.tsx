@@ -79,7 +79,7 @@ export default async function HomePage() {
                 />
                 <button
                   type="submit"
-                  className="bg-foreground text-background px-8 py-3.5 font-bold text-sm tracking-widest hover:bg-foreground/90 transition-all duration-500"
+                  className="bg-foreground text-background px-8 py-3.5 font-bold text-sm tracking-widest btn-subscribe transition-all duration-300"
                 >
                   SUBSCRIBE
                 </button>
