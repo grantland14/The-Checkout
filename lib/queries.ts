@@ -32,11 +32,8 @@ export async function getSiteSettings() {
     navigation,
     secondaryNavigation,
     veniceCta,
-    articleCtaKicker,
-    articleCtaHeadline,
     articleCtaSubtitle,
-    articleCtaButtonText,
-    articleCtaNote
+    articleCtaButtonText
   }`)
 }
 
