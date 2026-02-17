@@ -44,10 +44,10 @@ export default function Header({ siteSettings }: { siteSettings: any }) {
           {/* Spacer */}
           <div className="flex-1" />
 
-          {/* Subscribe Button (Desktop) */}
+          {/* Subscribe Button */}
           <Link
             href="/subscribe"
-            className="hidden sm:inline-flex bg-foreground text-background px-8 self-stretch items-center font-bold text-[11px] tracking-[0.15em] btn-subscribe transition-all duration-300"
+            className="inline-flex bg-foreground text-background px-5 sm:px-8 self-stretch items-center font-bold text-[10px] sm:text-[11px] tracking-[0.15em] btn-subscribe transition-all duration-300"
           >
             SUBSCRIBE
           </Link>
@@ -108,13 +108,6 @@ export default function Header({ siteSettings }: { siteSettings: any }) {
                 </Link>
               )
             )}
-            <Link
-              href="/subscribe"
-              onClick={() => setMobileMenuOpen(false)}
-              className="mx-6 my-4 inline-flex justify-center bg-foreground text-background px-6 py-3.5 font-bold text-[11px] tracking-[0.15em] btn-subscribe transition-all duration-300"
-            >
-              SUBSCRIBE
-            </Link>
           </nav>
         </div>
       )}
