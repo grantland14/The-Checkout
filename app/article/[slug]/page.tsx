@@ -8,12 +8,27 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import NewsletterSection from "@/components/newsletter-section"
 import { urlFor } from "@/lib/sanity"
+import type { Metadata } from "next"
 import {
   getSiteSettings,
   getArticleBySlug,
   getAllArticleSlugs,
   getLatestArticles,
 } from "@/lib/queries"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const article = await getArticleBySlug(decodeURIComponent(slug))
+  if (!article) return { title: "Article Not Found" }
+  return {
+    title: article.seo?.metaTitle || article.title,
+    description: article.seo?.metaDescription || article.excerpt || undefined,
+  }
+}
 
 function formatDate(date: string) {
   return new Date(date).toLocaleDateString("en-US", {

@@ -1,9 +1,15 @@
 export const revalidate = 86400
 
+import type { Metadata } from "next"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { getSiteSettings } from "@/lib/queries"
 import { urlFor } from "@/lib/sanity"
+
+export const metadata: Metadata = {
+  title: "Subscribe",
+  description: "Subscribe to The Checkout — free weekly European eCommerce intelligence.",
+}
 
 export default async function SubscribePage() {
   const siteSettings = await getSiteSettings()

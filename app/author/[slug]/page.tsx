@@ -6,7 +6,22 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import NewsletterSection from "@/components/newsletter-section"
 import ArticleListWithLoadMore from "@/components/article-list-with-load-more"
+import type { Metadata } from "next"
 import { getSiteSettings, getAuthorBySlug, getAllAuthorSlugs } from "@/lib/queries"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const author = await getAuthorBySlug(decodeURIComponent(slug))
+  if (!author) return { title: "Author Not Found" }
+  return {
+    title: author.name,
+    description: author.role ? `${author.name} — ${author.role}` : undefined,
+  }
+}
 import { urlFor } from "@/lib/sanity"
 
 export async function generateStaticParams() {

@@ -8,6 +8,7 @@ import NewsletterSection from "@/components/newsletter-section"
 import ArticleListWithLoadMore from "@/components/article-list-with-load-more"
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 import { urlFor } from "@/lib/sanity"
+import type { Metadata } from "next"
 import {
   getSiteSettings,
   getArticlesByCategory,
@@ -16,6 +17,30 @@ import {
   getPageBySlug,
   getAllPageSlugs,
 } from "@/lib/queries"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string }>
+}): Promise<Metadata> {
+  const { category: slug } = await params
+  const decodedSlug = decodeURIComponent(slug)
+  const categoryData = await getCategoryBySlug(decodedSlug)
+  if (categoryData) {
+    return {
+      title: categoryData.title,
+      description: categoryData.description || undefined,
+    }
+  }
+  const page = await getPageBySlug(decodedSlug)
+  if (page) {
+    return {
+      title: page.seo?.metaTitle || page.title,
+      description: page.seo?.metaDescription || page.excerpt || undefined,
+    }
+  }
+  return { title: "Not Found" }
+}
 
 const pagePortableTextComponents: PortableTextComponents = {
   block: {
