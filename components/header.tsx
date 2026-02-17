@@ -47,7 +47,7 @@ export default function Header({ siteSettings }: { siteSettings: any }) {
           {/* Subscribe Button */}
           <Link
             href="/subscribe"
-            className="inline-flex bg-foreground text-background px-5 sm:px-8 self-stretch items-center font-bold text-[10px] sm:text-[11px] tracking-[0.15em] btn-subscribe transition-all duration-300"
+            className="inline-flex bg-foreground text-background px-5 sm:px-8 items-center justify-center h-12 sm:self-stretch sm:h-auto font-bold text-[10px] sm:text-[11px] tracking-[0.15em] btn-subscribe transition-all duration-300"
           >
             SUBSCRIBE
           </Link>
