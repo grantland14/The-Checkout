@@ -148,13 +148,20 @@ export default async function ArticlePage({
       <header>
         <div className="max-w-[720px] mx-auto px-6 sm:px-8 pt-16 sm:pt-20 lg:pt-24 pb-10">
           <div className="flex items-center gap-3 mb-8">
-            {article.categories?.[0] && (
-              <Link
-                href={`/${article.categories[0].slug.current}`}
-                className="text-[10px] font-bold tracking-[0.2em] text-foreground hover:text-muted-foreground transition-colors duration-500"
-              >
-                {article.categories[0].title?.toUpperCase()}
-              </Link>
+            {article.categories?.length > 0 && (
+              <span className="text-[10px] font-bold tracking-[0.2em]">
+                {article.categories.map((cat: any, i: number) => (
+                  <span key={cat.slug.current}>
+                    {i > 0 && <span className="text-muted-foreground mx-1.5">/</span>}
+                    <Link
+                      href={`/${cat.slug.current}`}
+                      className="text-foreground hover:text-muted-foreground transition-colors duration-500"
+                    >
+                      {cat.title?.toUpperCase()}
+                    </Link>
+                  </span>
+                ))}
+              </span>
             )}
             <span className="w-6 h-[1.5px] bg-border" />
             {article.publishedAt && (
