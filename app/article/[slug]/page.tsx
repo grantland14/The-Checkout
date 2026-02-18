@@ -369,7 +369,7 @@ export default async function ArticlePage({
                       {related.featuredImage ? (
                         <img
                           src={urlFor(related.featuredImage)
-                            .width(800)
+                            .width(1200)
                             .url()}
                           alt={related.title}
                           className="w-full h-full object-cover"

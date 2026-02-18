@@ -39,7 +39,7 @@ export default function ArticleListWithLoadMore({
               <div className="w-full lg:w-80 aspect-[5/3] lg:aspect-auto lg:h-48 bg-card shrink-0 image-editorial overflow-hidden">
                 <img
                   src={urlFor(article.featuredImage)
-                    .width(800)
+                    .width(1200)
                     .url()}
                   alt={article.title}
                   className="w-full h-full object-cover"

@@ -259,7 +259,7 @@ export default async function HomePage() {
                         <div className="image-editorial w-full aspect-[16/10] bg-card mb-5">
                           <img
                             src={urlFor(article.featuredImage)
-                              .width(800)
+                              .width(1200)
                               .url()}
                             alt={article.title}
                             className="w-full h-full object-cover"
@@ -490,7 +490,7 @@ export default async function HomePage() {
                       <div className="image-editorial w-full aspect-[4/5] bg-card">
                         <img
                           src={urlFor(interviewArticles[0].featuredImage)
-                            .width(800)
+                            .width(1200)
                             .url()}
                           alt={interviewArticles[0].title}
                           className="w-full h-full object-cover object-top"
@@ -550,7 +550,7 @@ export default async function HomePage() {
                         <div className="image-editorial w-20 h-20 lg:w-24 lg:h-24 shrink-0 bg-card">
                           <img
                             src={urlFor(article.featuredImage)
-                              .width(400)
+                              .width(480)
                               .url()}
                             alt={article.title}
                             className="w-full h-full object-cover object-top"
