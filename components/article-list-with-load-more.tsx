@@ -11,7 +11,7 @@ type Article = {
   excerpt?: string
   publishedAt: string
   featuredImage?: any
-  category?: { title: string; slug: { current: string } }
+  categories?: { title: string; slug: { current: string } }[]
 }
 
 export default function ArticleListWithLoadMore({
