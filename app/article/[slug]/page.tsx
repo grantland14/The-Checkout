@@ -148,12 +148,12 @@ export default async function ArticlePage({
       <header>
         <div className="max-w-[720px] mx-auto px-6 sm:px-8 pt-16 sm:pt-20 lg:pt-24 pb-10">
           <div className="flex items-center gap-3 mb-8">
-            {article.category && (
+            {article.categories?.[0] && (
               <Link
-                href={`/${article.category.slug.current}`}
+                href={`/${article.categories[0].slug.current}`}
                 className="text-[10px] font-bold tracking-[0.2em] text-foreground hover:text-muted-foreground transition-colors duration-500"
               >
-                {article.category.title?.toUpperCase()}
+                {article.categories[0].title?.toUpperCase()}
               </Link>
             )}
             <span className="w-6 h-[1.5px] bg-border" />
@@ -380,10 +380,10 @@ export default async function ArticlePage({
                     </div>
 
                     {/* Category */}
-                    {related.category && (
+                    {related.categories?.[0] && (
                       <div className="flex items-center gap-3 mb-4">
                         <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground">
-                          {related.category.title?.toUpperCase()}
+                          {related.categories[0].title?.toUpperCase()}
                         </span>
                       </div>
                     )}

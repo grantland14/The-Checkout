@@ -51,9 +51,9 @@ export default function ArticleListWithLoadMore({
             <div className="flex-1">
               {/* Tag + Date */}
               <div className="flex items-center gap-3 mb-3">
-                {article.category && (
+                {article.categories?.[0] && (
                   <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground">
-                    {article.category.title.toUpperCase()}
+                    {article.categories[0].title.toUpperCase()}
                   </span>
                 )}
                 <span className="text-[10px] text-muted-foreground">

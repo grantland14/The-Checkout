@@ -146,15 +146,15 @@ export default async function HomePage() {
                   >
                     <div className="flex items-center gap-3 mb-3">
                       {/* Tag */}
-                      {article.category && (
+                      {article.categories?.[0] && (
                         <span
                           className={`text-[9px] font-bold px-2.5 py-1 tracking-[0.15em] ${
-                            article.category.title?.toUpperCase() === "BREAKING"
+                            article.categories?.[0].title?.toUpperCase() === "BREAKING"
                               ? "bg-accent text-accent-foreground"
                               : "bg-background/10 text-background/70"
                           }`}
                         >
-                          {article.category.title?.toUpperCase()}
+                          {article.categories?.[0].title?.toUpperCase()}
                         </span>
                       )}
 
@@ -222,7 +222,7 @@ export default async function HomePage() {
                     {/* Content */}
                     <div className="flex flex-col justify-center">
                       <p className="text-[10px] font-bold tracking-[0.2em] text-foreground mb-4">
-                        {newsArticles[0].category?.title?.toUpperCase() || "NEWS"}
+                        {newsArticles[0].categories?.[0]?.title?.toUpperCase() || "NEWS"}
                       </p>
                       <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-tight mb-6">
                         <span className="headline-hover">
@@ -269,7 +269,7 @@ export default async function HomePage() {
 
                       {/* Tag */}
                       <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground mb-4">
-                        {article.category?.title?.toUpperCase() || "NEWS"}
+                        {article.categories?.[0]?.title?.toUpperCase() || "NEWS"}
                       </p>
 
                       {/* Title */}

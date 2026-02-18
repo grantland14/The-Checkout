@@ -47,14 +47,14 @@ export async function getFeaturedArticles(limit = 4) {
     publishedAt,
     featured,
     featuredImage,
-    category->{title, slug},
+    categories[]->{title, slug},
     author->{name, slug, role, photo},
     "readingTime": round(length(pt::text(body)) / 5 / 200)
   }`, { limit })
 }
 
 export async function getArticlesByCategory(categorySlug: string, limit = 7) {
-  return client.fetch(`*[_type == "article" && category->slug.current == $categorySlug] | order(publishedAt desc)[0...$limit]{
+  return client.fetch(`*[_type == "article" && $categorySlug in categories[]->slug.current] | order(publishedAt desc)[0...$limit]{
     _id,
     title,
     slug,
@@ -64,7 +64,7 @@ export async function getArticlesByCategory(categorySlug: string, limit = 7) {
     sponsored,
     sponsorName,
     featuredImage,
-    category->{title, slug},
+    categories[]->{title, slug},
     author->{name, slug, role, photo},
     "readingTime": round(length(pt::text(body)) / 5 / 200)
   }`, { categorySlug, limit })
@@ -82,7 +82,7 @@ export async function getArticleBySlug(slug: string) {
     sponsored,
     sponsorName,
     featuredImage,
-    category->{title, slug},
+    categories[]->{title, slug},
     author->{name, slug, role, photo, bio},
     brandsMentioned[]->{_id, name, slug, logo, category},
     relatedArticles[]->{
@@ -92,7 +92,7 @@ export async function getArticleBySlug(slug: string) {
       excerpt,
       publishedAt,
       featuredImage,
-      category->{title, slug}
+      categories[]->{title, slug}
     },
     "readingTime": round(length(pt::text(body)) / 5 / 200)
   }`, { slug })
@@ -116,7 +116,7 @@ export async function getLatestArticles(limit = 12, excludeId?: string) {
     publishedAt,
     featured,
     featuredImage,
-    category->{title, slug},
+    categories[]->{title, slug},
     author->{name, slug, role, photo},
     "readingTime": round(length(pt::text(body)) / 5 / 200)
   }`, { limit, excludeId })
@@ -183,7 +183,7 @@ export async function getBrandBySlug(slug: string) {
       excerpt,
       publishedAt,
       featuredImage,
-      category->{title, slug}
+      categories[]->{title, slug}
     }
   }`, { slug })
 }
@@ -212,7 +212,7 @@ export async function getAuthorBySlug(slug: string) {
       excerpt,
       publishedAt,
       featuredImage,
-      category->{title, slug}
+      categories[]->{title, slug}
     }
   }`, { slug })
 }
