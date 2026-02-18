@@ -25,7 +25,7 @@ export default async function HomePage() {
       getFeaturedArticles(4),
       getArticlesByCategory("news", 7),
       getArticlesByCategory("analysis", 5),
-      getArticlesByCategory("data", 4),
+      getArticlesByCategory("funding", 4),
       getArticlesByCategory("interviews", 5),
     ])
 
@@ -389,7 +389,7 @@ export default async function HomePage() {
           </section>
         )}
 
-        {/* ───────────────────────── DATA ───────────────────────── */}
+        {/* ───────────────────────── DEAL FLOW ───────────────────────── */}
         {dataArticles && dataArticles.length > 0 && (
           <section className="py-20 lg:py-28 border-b border-border">
             <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12">
@@ -397,12 +397,12 @@ export default async function HomePage() {
               <div className="flex items-baseline justify-between mb-16">
                 <div className="flex items-baseline gap-4">
                   <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
-                    Data
+                    Deal Flow
                   </h2>
                   <div className="w-16 h-[2px] bg-foreground mb-2" />
                 </div>
                 <Link
-                  href="/data"
+                  href="/funding"
                   className="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-500 group"
                 >
                   VIEW ALL{" "}
@@ -420,28 +420,40 @@ export default async function HomePage() {
                     href={`/article/${article.slug.current}`}
                     className="group flex flex-col lg:flex-row lg:items-center justify-between py-6 lg:py-8 card-lift"
                   >
-                    <div>
-                      <div className="flex items-center gap-3 mb-3 lg:mb-0">
-                        <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground">
-                          DATA
-                        </span>
-                        <span className="text-[10px] text-muted-foreground/50">
-                          {formatDate(article.publishedAt)}
-                        </span>
-                        {article.sponsored && article.sponsorName && (
-                          <>
-                            <span className="text-[10px] text-muted-foreground/50">|</span>
-                            <span className="text-[10px] text-muted-foreground/60">
-                              Sponsored by {article.sponsorName}
-                            </span>
-                          </>
-                        )}
+                    <div className="flex items-center gap-6">
+                      {/* Hover-reveal image */}
+                      {article.featuredImage && (
+                        <div className="hidden lg:block w-0 group-hover:w-24 h-16 overflow-hidden transition-all duration-500 ease-out shrink-0">
+                          <img
+                            src={urlFor(article.featuredImage).width(480).url()}
+                            alt=""
+                            className="w-24 h-16 object-cover"
+                          />
+                        </div>
+                      )}
+                      <div>
+                        <div className="flex items-center gap-3 mb-3 lg:mb-0">
+                          <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground">
+                            DEAL FLOW
+                          </span>
+                          <span className="text-[10px] text-muted-foreground/50">
+                            {formatDate(article.publishedAt)}
+                          </span>
+                          {article.sponsored && article.sponsorName && (
+                            <>
+                              <span className="text-[10px] text-muted-foreground/50">|</span>
+                              <span className="text-[10px] text-muted-foreground/60">
+                                Sponsored by {article.sponsorName}
+                              </span>
+                            </>
+                          )}
+                        </div>
+                        <h3 className="font-serif text-xl lg:text-2xl font-normal leading-snug max-w-[600px]">
+                          <span className="headline-hover">
+                            {article.title}
+                          </span>
+                        </h3>
                       </div>
-                      <h3 className="font-serif text-xl lg:text-2xl font-normal leading-snug max-w-[600px]">
-                        <span className="headline-hover">
-                          {article.title}
-                        </span>
-                      </h3>
                     </div>
 
                     {/* Arrow */}
