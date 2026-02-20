@@ -528,18 +528,6 @@ export default async function HomePage() {
                         </p>
                       )}
 
-                      {interviewArticles[0].author && (
-                        <div>
-                          <p className="text-sm font-bold tracking-wide">
-                            {interviewArticles[0].author.name}
-                          </p>
-                          {interviewArticles[0].author.role && (
-                            <p className="text-[10px] tracking-[0.15em] text-muted-foreground mt-0.5">
-                              {interviewArticles[0].author.role}
-                            </p>
-                          )}
-                        </div>
-                      )}
                     </div>
                   </div>
                 </Link>
@@ -582,14 +570,6 @@ export default async function HomePage() {
                           </span>
                         </h3>
 
-                        {article.author && (
-                          <p className="text-[11px] font-bold tracking-wide text-muted-foreground">
-                            {article.author.name}
-                            {article.author.role && (
-                              <> | {article.author.role}</>
-                            )}
-                          </p>
-                        )}
                       </div>
                     </Link>
                   ))}
