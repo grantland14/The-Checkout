@@ -1,14 +1,45 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { urlFor } from "@/lib/sanity"
 
 export default function Header({ siteSettings }: { siteSettings: any }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const lastScrollY = useRef(0)
+  const ticking = useRef(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (ticking.current) return
+      ticking.current = true
+
+      requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY
+
+        // Only hide/show after scrolling past the header height
+        if (currentScrollY > 72) {
+          setHidden(currentScrollY > lastScrollY.current)
+        } else {
+          setHidden(false)
+        }
+
+        lastScrollY.current = currentScrollY
+        ticking.current = false
+      })
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header
+      className={`sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border transition-transform duration-300 ${
+        hidden && !mobileMenuOpen ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
       <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center h-[4.5rem]">
           {/* Logo */}
