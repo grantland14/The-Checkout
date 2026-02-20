@@ -144,8 +144,33 @@ export default async function CategoryOrPage({
   // If it's a category, render category page
   if (categoryData) {
     const articles = await getArticlesByCategory(category, 50)
+    const siteUrl = siteSettings?.siteUrl || "https://thecheckout.media"
+
+    const breadcrumbJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: siteUrl,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: categoryData.title,
+          item: `${siteUrl}/${categoryData.slug.current}`,
+        },
+      ],
+    }
+
     return (
       <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
         <Header siteSettings={siteSettings} />
 
         <main>

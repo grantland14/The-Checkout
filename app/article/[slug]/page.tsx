@@ -24,9 +24,32 @@ export async function generateMetadata({
   const { slug } = await params
   const article = await getArticleBySlug(decodeURIComponent(slug))
   if (!article) return { title: "Article Not Found" }
+
+  const title = article.seo?.metaTitle || article.title
+  const description = article.seo?.metaDescription || article.excerpt || undefined
+  const ogImage = article.featuredImage
+    ? urlFor(article.featuredImage).width(1200).height(630).url()
+    : undefined
+
   return {
-    title: article.seo?.metaTitle || article.title,
-    description: article.seo?.metaDescription || article.excerpt || undefined,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime: article.publishedAt,
+      authors: article.author?.name ? [article.author.name] : undefined,
+      ...(ogImage && {
+        images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      ...(ogImage && { images: [ogImage] }),
+    },
   }
 }
 
@@ -140,8 +163,73 @@ export default async function ArticlePage({
     ? article.relatedArticles.slice(0, 3)
     : await getLatestArticles(3, article._id)
 
+  const siteUrl = siteSettings?.siteUrl || "https://thecheckout.media"
+  const articleUrl = `${siteUrl}/article/${article.slug.current}`
+  const ogImage = article.featuredImage
+    ? urlFor(article.featuredImage).width(1200).height(630).url()
+    : undefined
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    ...(article.excerpt && { description: article.excerpt }),
+    ...(ogImage && { image: ogImage }),
+    datePublished: article.publishedAt,
+    url: articleUrl,
+    ...(article.author && {
+      author: {
+        "@type": "Person",
+        name: article.author.name,
+        url: `${siteUrl}/author/${article.author.slug?.current}`,
+      },
+    }),
+    publisher: {
+      "@type": "Organization",
+      name: siteSettings?.title || "The Checkout",
+      url: siteUrl,
+    },
+  }
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      ...(article.categories?.[0]
+        ? [
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: article.categories[0].title,
+              item: `${siteUrl}/${article.categories[0].slug.current}`,
+            },
+          ]
+        : []),
+      {
+        "@type": "ListItem",
+        position: article.categories?.[0] ? 3 : 2,
+        name: article.title,
+        item: articleUrl,
+      },
+    ],
+  }
+
   return (
     <div className="min-h-screen bg-background">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Header siteSettings={siteSettings} />
 
       {/* Article Header */}

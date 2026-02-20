@@ -36,8 +36,42 @@ export default async function HomePage() {
     </>
   )
 
+  const siteUrl = siteSettings?.siteUrl || "https://thecheckout.media"
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteSettings?.title || "The Checkout",
+    url: siteUrl,
+    description: siteSettings?.metaDescription || siteSettings?.description || "Essential eCommerce intelligence for European operators.",
+    ...(siteSettings?.logo && {
+      logo: urlFor(siteSettings.logo).width(600).url(),
+    }),
+    ...(siteSettings?.socialLinks && {
+      sameAs: [
+        siteSettings.socialLinks.twitter,
+        siteSettings.socialLinks.linkedin,
+        siteSettings.socialLinks.instagram,
+      ].filter(Boolean),
+    }),
+  }
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteSettings?.title || "The Checkout",
+    url: siteUrl,
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
       <Header siteSettings={siteSettings} />
 
       <main>
