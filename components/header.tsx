@@ -46,9 +46,9 @@ export default function Header({ siteSettings }: { siteSettings: any }) {
           <Link href="/" className="shrink-0 hover:opacity-70 transition-opacity duration-300">
             {siteSettings?.logo ? (
               <img
-                src={urlFor(siteSettings.logo).height(32).url()}
+                src={urlFor(siteSettings.logo).height(96).url()}
                 alt={siteSettings.title || "Logo"}
-                className="h-7 sm:h-8 w-auto"
+                className="h-6 sm:h-7 w-auto"
               />
             ) : (
               <span className="text-lg font-black tracking-tight whitespace-nowrap">
