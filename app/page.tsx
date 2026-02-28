@@ -354,64 +354,96 @@ export default async function HomePage() {
               {analysisArticles[0] && (
                 <Link
                   href={`/article/${analysisArticles[0].slug.current}`}
-                  className="block mb-12 group"
+                  className="block mb-16 lg:mb-20 group"
                 >
-                  <div className="bg-card p-8 lg:p-12 border-y border-border">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="text-[10px] font-bold tracking-[0.2em] text-foreground">
-                        DEEP DIVE
-                      </span>
-                      <span className="text-[10px] text-muted-foreground/50">|</span>
-                      <span className="text-[10px] text-muted-foreground/50">
-                        {formatDate(analysisArticles[0].publishedAt)}
-                      </span>
-                      {analysisArticles[0].readingTime && (
-                        <>
-                          <span className="text-[10px] text-muted-foreground/50">|</span>
-                          <span className="text-[10px] text-muted-foreground/50">
-                            {analysisArticles[0].readingTime} MIN READ
-                          </span>
-                        </>
-                      )}
-                    </div>
-                    <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-tight mb-6 max-w-[800px]">
-                      <span className="headline-hover">
-                        {analysisArticles[0].title}
-                      </span>
-                    </h3>
-                    {analysisArticles[0].excerpt && (
-                      <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-[620px]">
-                        {analysisArticles[0].excerpt}
-                      </p>
+                  <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-12">
+                    {/* Image */}
+                    {analysisArticles[0].featuredImage && (
+                      <div className="image-editorial w-full aspect-[16/10] bg-card">
+                        <img
+                          src={urlFor(analysisArticles[0].featuredImage)
+                            .width(1200)
+                            .url()}
+                          alt={analysisArticles[0].title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     )}
-                    <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground group-hover:text-foreground transition-colors duration-500 mt-8 inline-block">
-                      READ ANALYSIS {"-->"}
-                    </span>
+
+                    {/* Content */}
+                    <div className="flex flex-col justify-center">
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="text-[10px] font-bold tracking-[0.2em] text-foreground">
+                          DEEP DIVE
+                        </span>
+                        <span className="text-[10px] text-muted-foreground/50">|</span>
+                        <span className="text-[10px] text-muted-foreground/50">
+                          {formatDate(analysisArticles[0].publishedAt)}
+                        </span>
+                        {analysisArticles[0].readingTime && (
+                          <>
+                            <span className="text-[10px] text-muted-foreground/50">|</span>
+                            <span className="text-[10px] text-muted-foreground/50">
+                              {analysisArticles[0].readingTime} MIN READ
+                            </span>
+                          </>
+                        )}
+                      </div>
+                      <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-tight mb-6">
+                        <span className="headline-hover">
+                          {analysisArticles[0].title}
+                        </span>
+                      </h3>
+                      {analysisArticles[0].excerpt && (
+                        <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-[540px]">
+                          {analysisArticles[0].excerpt}
+                        </p>
+                      )}
+                      <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground group-hover:text-foreground transition-colors duration-500 mt-8">
+                        READ ANALYSIS {"-->"}
+                      </span>
+                    </div>
                   </div>
                 </Link>
               )}
 
+              {/* Divider */}
+              <div className="border-t border-border mb-12" />
+
               {/* Remaining articles in 2-column grid */}
               {analysisArticles.length > 1 && (
-                <div className="grid lg:grid-cols-2 gap-x-12 gap-y-0 mt-12">
+                <div className="grid lg:grid-cols-2 gap-x-12 gap-y-12">
                   {analysisArticles.slice(1).map((article: any) => (
                     <Link
                       key={article._id}
                       href={`/article/${article.slug.current}`}
-                      className="group card-lift block py-8 border-b border-border"
+                      className="group card-lift block"
                     >
+                      {/* Image */}
+                      {article.featuredImage && (
+                        <div className="image-editorial w-full aspect-[16/10] bg-card mb-5">
+                          <img
+                            src={urlFor(article.featuredImage)
+                              .width(1200)
+                              .url()}
+                            alt={article.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+
                       <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground mb-4">
                         ANALYSIS
                       </p>
 
-                      <h3 className="font-serif text-2xl lg:text-3xl font-normal leading-snug mb-4 max-w-[540px]">
+                      <h3 className="font-serif text-xl lg:text-2xl font-normal leading-snug mb-3">
                         <span className="headline-hover">
                           {article.title}
                         </span>
                       </h3>
 
                       {article.excerpt && (
-                        <p className="text-sm text-muted-foreground leading-relaxed max-w-[480px]">
+                        <p className="text-sm text-muted-foreground leading-relaxed">
                           {article.excerpt}
                         </p>
                       )}
