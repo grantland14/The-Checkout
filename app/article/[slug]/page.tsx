@@ -308,17 +308,22 @@ export default async function ArticlePage({
 
       {/* Featured Image */}
       {article.featuredImage && (
-        <div className="max-w-[720px] mx-auto px-6 sm:px-8 mb-10">
+        <figure className="max-w-[720px] mx-auto px-6 sm:px-8 mb-10">
           <div className="image-editorial w-full aspect-[2/1] bg-card overflow-hidden">
             <img
               src={urlFor(article.featuredImage)
                 .width(1440)
                 .url()}
-              alt={article.title}
+              alt={article.featuredImage.alt || article.title}
               className="w-full h-full object-cover"
             />
           </div>
-        </div>
+          {article.featuredImage.caption && (
+            <figcaption className="text-xs text-muted-foreground mt-3">
+              {article.featuredImage.caption}
+            </figcaption>
+          )}
+        </figure>
       )}
 
       {/* Article Body with Inline Subscribe CTA at 40% */}

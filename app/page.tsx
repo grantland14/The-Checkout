@@ -480,54 +480,45 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              {/* List layout */}
+              {/* Articles — horizontal rows with thumbnails */}
               <div className="divide-y divide-border">
                 {dataArticles.map((article: any) => (
                   <Link
                     key={article._id}
                     href={`/article/${article.slug.current}`}
-                    className="group flex flex-col lg:flex-row lg:items-center justify-between py-6 lg:py-8 card-lift"
+                    className="group card-lift flex gap-6 lg:gap-8 py-8"
                   >
-                    <div className="flex items-center gap-6">
-                      {/* Hover-reveal image */}
-                      {article.featuredImage && (
-                        <div className="hidden lg:block w-0 group-hover:w-24 h-16 overflow-hidden transition-all duration-500 ease-out shrink-0">
-                          <img
-                            src={urlFor(article.featuredImage).width(480).url()}
-                            alt=""
-                            className="w-24 h-16 object-cover"
-                          />
-                        </div>
-                      )}
-                      <div>
-                        <div className="flex items-center gap-3 mb-3 lg:mb-0">
-                          <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground">
-                            DEAL FLOW
-                          </span>
-                          <span className="text-[10px] text-muted-foreground/50">
-                            {formatDate(article.publishedAt)}
-                          </span>
-                          {article.sponsored && article.sponsorName && (
-                            <>
-                              <span className="text-[10px] text-muted-foreground/50">|</span>
-                              <span className="text-[10px] text-muted-foreground/60">
-                                Sponsored by {article.sponsorName}
-                              </span>
-                            </>
-                          )}
-                        </div>
-                        <h3 className="font-serif text-xl lg:text-2xl font-normal leading-snug max-w-[600px]">
-                          <span className="headline-hover">
-                            {article.title}
-                          </span>
-                        </h3>
+                    {/* Thumbnail */}
+                    {article.featuredImage && (
+                      <div className="image-editorial w-28 h-28 lg:w-40 lg:h-28 shrink-0 bg-card">
+                        <img
+                          src={urlFor(article.featuredImage)
+                            .width(480)
+                            .url()}
+                          alt={article.title}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                    </div>
+                    )}
 
-                    {/* Arrow */}
-                    <span className="inline-block group-hover:translate-x-1 transition-transform duration-500 text-muted-foreground mt-3 lg:mt-0">
-                      {"-->"}
-                    </span>
+                    {/* Content */}
+                    <div className="flex flex-col justify-center min-w-0">
+                      <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground mb-2">
+                        DEAL FLOW
+                      </p>
+
+                      <h3 className="font-serif text-xl lg:text-2xl font-normal leading-snug mb-2">
+                        <span className="headline-hover">
+                          {article.title}
+                        </span>
+                      </h3>
+
+                      {article.excerpt && (
+                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 hidden sm:block">
+                          {article.excerpt}
+                        </p>
+                      )}
+                    </div>
                   </Link>
                 ))}
               </div>
