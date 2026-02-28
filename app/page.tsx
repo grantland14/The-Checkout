@@ -412,9 +412,9 @@ export default async function HomePage() {
               {/* Divider */}
               <div className="border-t border-border mb-12 mt-12" />
 
-              {/* Remaining articles in 3-column grid */}
+              {/* Remaining articles in 2-column grid */}
               {analysisArticles.length > 1 && (
-                <div className="grid lg:grid-cols-3 gap-x-12 gap-y-12">
+                <div className="grid lg:grid-cols-2 gap-x-12 gap-y-12">
                   {analysisArticles.slice(1).map((article: any) => (
                     <Link
                       key={article._id}
