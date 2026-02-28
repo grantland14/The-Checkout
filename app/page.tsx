@@ -350,56 +350,61 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              {/* Featured first article — full-width image + card panel */}
+              {/* Featured first article — side-by-side card */}
               {analysisArticles[0] && (
                 <Link
                   href={`/article/${analysisArticles[0].slug.current}`}
                   className="block mb-12 group"
                 >
-                  {/* Full-width image */}
-                  {analysisArticles[0].featuredImage && (
-                    <div className="image-editorial w-full aspect-[21/9] bg-card overflow-hidden">
-                      <img
-                        src={urlFor(analysisArticles[0].featuredImage)
-                          .width(1400)
-                          .url()}
-                        alt={analysisArticles[0].title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-                  {/* Card panel below image */}
-                  <div className="bg-card p-8 lg:p-12 border-x border-b border-border">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="text-[10px] font-bold tracking-[0.2em] text-foreground">
-                        DEEP DIVE
-                      </span>
-                      <span className="text-[10px] text-muted-foreground/50">|</span>
-                      <span className="text-[10px] text-muted-foreground/50">
-                        {formatDate(analysisArticles[0].publishedAt)}
-                      </span>
-                      {analysisArticles[0].readingTime && (
-                        <>
+                  <div className="bg-card border border-border p-8 lg:p-12">
+                    <div className="grid lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12">
+                      {/* Content */}
+                      <div className="flex flex-col justify-center">
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="text-[10px] font-bold tracking-[0.2em] text-foreground">
+                            DEEP DIVE
+                          </span>
                           <span className="text-[10px] text-muted-foreground/50">|</span>
                           <span className="text-[10px] text-muted-foreground/50">
-                            {analysisArticles[0].readingTime} MIN READ
+                            {formatDate(analysisArticles[0].publishedAt)}
                           </span>
-                        </>
+                          {analysisArticles[0].readingTime && (
+                            <>
+                              <span className="text-[10px] text-muted-foreground/50">|</span>
+                              <span className="text-[10px] text-muted-foreground/50">
+                                {analysisArticles[0].readingTime} MIN READ
+                              </span>
+                            </>
+                          )}
+                        </div>
+                        <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-tight mb-6">
+                          <span className="headline-hover">
+                            {analysisArticles[0].title}
+                          </span>
+                        </h3>
+                        {analysisArticles[0].excerpt && (
+                          <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
+                            {analysisArticles[0].excerpt}
+                          </p>
+                        )}
+                        <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground group-hover:text-foreground transition-colors duration-500 mt-8 inline-block">
+                          READ ANALYSIS {"-->"}
+                        </span>
+                      </div>
+
+                      {/* Image */}
+                      {analysisArticles[0].featuredImage && (
+                        <div className="image-editorial w-full aspect-[4/3] bg-card overflow-hidden order-first lg:order-last">
+                          <img
+                            src={urlFor(analysisArticles[0].featuredImage)
+                              .width(1200)
+                              .url()}
+                            alt={analysisArticles[0].title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
                       )}
                     </div>
-                    <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-tight mb-6 max-w-[800px]">
-                      <span className="headline-hover">
-                        {analysisArticles[0].title}
-                      </span>
-                    </h3>
-                    {analysisArticles[0].excerpt && (
-                      <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-[620px]">
-                        {analysisArticles[0].excerpt}
-                      </p>
-                    )}
-                    <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground group-hover:text-foreground transition-colors duration-500 mt-8 inline-block">
-                      READ ANALYSIS {"-->"}
-                    </span>
                   </div>
                 </Link>
               )}
