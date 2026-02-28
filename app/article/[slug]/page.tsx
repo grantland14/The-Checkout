@@ -326,11 +326,56 @@ export default async function ArticlePage({
         </figure>
       )}
 
-      {/* Article Body with Inline Subscribe CTA at 40% */}
+      {/* Article Body with Inline Subscribe CTA at ~40% */}
       <article className="max-w-[720px] mx-auto px-6 sm:px-8">
         {article.body && (() => {
           const blocks = article.body
-          const splitIndex = Math.floor(blocks.length * 0.4)
+          const targetIndex = Math.floor(blocks.length * 0.4)
+
+          // Find a safe split point: after a normal paragraph block,
+          // never directly after a heading (h2-h6) or inside a list.
+          const isHeading = (b: any) =>
+            b.style === "h1" || b.style === "h2" || b.style === "h3" ||
+            b.style === "h4" || b.style === "h5" || b.style === "h6"
+          const isList = (b: any) => b.listItem != null
+
+          let splitIndex = targetIndex
+
+          // Search forward from target for a safe spot (after a paragraph that isn't followed by a list)
+          const findSafe = (start: number, direction: 1 | -1): number | null => {
+            for (let i = start; direction === 1 ? i < blocks.length : i > 0; i += direction) {
+              const prev = blocks[i - 1]
+              const next = blocks[i]
+              // Safe: previous block is a normal paragraph and next block is not a list continuation
+              if (
+                prev && !isHeading(prev) && !isList(prev) &&
+                (!next || !isList(next))
+              ) {
+                return i
+              }
+            }
+            return null
+          }
+
+          // Try forward first, then backward
+          const safeForward = findSafe(targetIndex, 1)
+          const safeBackward = findSafe(targetIndex, -1)
+
+          if (safeForward !== null && safeBackward !== null) {
+            // Pick whichever is closer to the target
+            splitIndex = (safeForward - targetIndex) <= (targetIndex - safeBackward)
+              ? safeForward : safeBackward
+          } else if (safeForward !== null) {
+            splitIndex = safeForward
+          } else if (safeBackward !== null) {
+            splitIndex = safeBackward
+          }
+
+          // Don't place CTA in the first 20% or last 20%
+          const minIndex = Math.floor(blocks.length * 0.2)
+          const maxIndex = Math.floor(blocks.length * 0.8)
+          splitIndex = Math.max(minIndex, Math.min(maxIndex, splitIndex))
+
           const firstHalf = blocks.slice(0, splitIndex)
           const secondHalf = blocks.slice(splitIndex)
 
