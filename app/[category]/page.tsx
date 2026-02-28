@@ -4,7 +4,6 @@ export const dynamicParams = true
 import { notFound } from "next/navigation"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import NewsletterSection from "@/components/newsletter-section"
 import ArticleListWithLoadMore from "@/components/article-list-with-load-more"
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 import { urlFor } from "@/lib/sanity"
@@ -204,8 +203,6 @@ export default async function CategoryOrPage({
             )}
           </section>
 
-          {/* ───────────────── Newsletter CTA ───────────────── */}
-          <NewsletterSection siteSettings={siteSettings} />
         </main>
 
         <Footer siteSettings={siteSettings} />
@@ -252,8 +249,6 @@ export default async function CategoryOrPage({
           </section>
         )}
 
-        {/* ───────────────── Newsletter CTA ───────────────── */}
-        <NewsletterSection siteSettings={siteSettings} />
       </main>
 
       <Footer siteSettings={siteSettings} />

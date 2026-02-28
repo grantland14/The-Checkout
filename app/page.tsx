@@ -3,7 +3,7 @@ export const revalidate = 86400
 import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import NewsletterSection from "@/components/newsletter-section"
+import ScrollReveal from "@/components/scroll-reveal"
 import { urlFor } from "@/lib/sanity"
 import {
   getSiteSettings,
@@ -220,7 +220,7 @@ export default async function HomePage() {
                   <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
                     News
                   </h2>
-                  <div className="w-16 h-[2px] bg-foreground mb-2" />
+                  <ScrollReveal><div className="w-16 h-[2px] bg-foreground mb-2 divider-draw" /></ScrollReveal>
                 </div>
                 <Link
                   href="/news"
@@ -337,7 +337,7 @@ export default async function HomePage() {
                   <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
                     Analysis
                   </h2>
-                  <div className="w-16 h-[2px] bg-foreground mb-2" />
+                  <ScrollReveal><div className="w-16 h-[2px] bg-foreground mb-2 divider-draw" /></ScrollReveal>
                 </div>
                 <Link
                   href="/analysis"
@@ -470,7 +470,7 @@ export default async function HomePage() {
                   <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
                     Deal Flow
                   </h2>
-                  <div className="w-16 h-[2px] bg-foreground mb-2" />
+                  <ScrollReveal><div className="w-16 h-[2px] bg-foreground mb-2 divider-draw" /></ScrollReveal>
                 </div>
                 <Link
                   href="/funding"
@@ -539,7 +539,7 @@ export default async function HomePage() {
                   <h2 className="font-serif text-5xl lg:text-6xl font-normal tracking-tight">
                     Interviews
                   </h2>
-                  <div className="w-16 h-[2px] bg-foreground mb-2" />
+                  <ScrollReveal><div className="w-16 h-[2px] bg-foreground mb-2 divider-draw" /></ScrollReveal>
                 </div>
                 <Link
                   href="/interviews"
@@ -641,8 +641,6 @@ export default async function HomePage() {
           </section>
         )}
 
-        {/* ───────────────────── NEWSLETTER CTA ───────────────────── */}
-        <NewsletterSection siteSettings={siteSettings} />
       </main>
 
       <Footer siteSettings={siteSettings} />

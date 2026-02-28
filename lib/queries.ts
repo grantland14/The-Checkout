@@ -83,7 +83,7 @@ export async function getArticleBySlug(slug: string) {
     sponsorName,
     featuredImage,
     categories[]->{title, slug},
-    author->{name, slug, role, photo, bio},
+    author->{name, slug, role, photo, bio, linkedin},
     brandsMentioned[]->{_id, name, slug, logo, category},
     relatedArticles[]->{
       _id,

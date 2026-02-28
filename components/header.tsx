@@ -124,9 +124,9 @@ export default function Header({ siteSettings }: { siteSettings: any }) {
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border bg-background">
-          <nav className="flex flex-col">
+      <div className={`md:hidden mobile-menu-wrapper${mobileMenuOpen ? " open" : ""}`}>
+        <div className="mobile-menu-inner">
+          <nav className="flex flex-col border-t border-border bg-background">
             {siteSettings?.navigation?.map(
               (item: { label: string; url: string }, index: number) => (
                 <Link
@@ -141,7 +141,7 @@ export default function Header({ siteSettings }: { siteSettings: any }) {
             )}
           </nav>
         </div>
-      )}
+      </div>
     </header>
   )
 }

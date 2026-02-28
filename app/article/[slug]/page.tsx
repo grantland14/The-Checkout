@@ -6,7 +6,7 @@ import Link from "next/link"
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import NewsletterSection from "@/components/newsletter-section"
+import VeniceImages from "@/components/venice-images"
 import { urlFor } from "@/lib/sanity"
 import type { Metadata } from "next"
 import {
@@ -418,73 +418,102 @@ export default async function ArticlePage({
           )
         })()}
 
+        {/* Author */}
+        {article.author && (
+          <div className="flex items-center gap-3 mt-10">
+            <Link
+              href={`/author/${article.author.slug?.current}`}
+              className="w-9 h-9 bg-card rounded-full overflow-hidden shrink-0"
+            >
+              {article.author.photo ? (
+                <img
+                  src={urlFor(article.author.photo).width(144).height(144).url()}
+                  alt={article.author.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-border to-muted" />
+              )}
+            </Link>
+            <Link
+              href={`/author/${article.author.slug?.current}`}
+              className="text-sm font-semibold hover:text-muted-foreground transition-colors duration-500"
+            >
+              {article.author.name}
+            </Link>
+            {article.author.linkedin && (
+              <a
+                href={article.author.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-60 transition-opacity duration-300"
+                aria-label={`${article.author.name} on LinkedIn`}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+            )}
+          </div>
+        )}
+
         {/* Divider */}
         <div className="-mx-6 sm:-mx-8 mt-14 lg:mt-16 mb-10 lg:mb-12 border-t border-border" />
 
         {/* Venice CTA */}
+        <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground mb-6">JOIN OUR FOUNDER NETWORK:</p>
         {(() => {
           const cta = siteSettings?.veniceCta
-          const tagline = cta?.tagline || "The room where 7-figure European founders connect."
-          const highlights = cta?.highlightWords || ["7-figure", "connect"]
-          const badge = cta?.badge || "VFN"
-          const heading = cta?.heading || "A private network for European founders and operators."
-          const description = cta?.description || "Venice Founders Network brings together the most ambitious DTC founders, operators, and investors building the future of European commerce. Dinners, deal flow, and direct introductions."
           const linkText = cta?.linkText || "Apply to Join"
           const linkUrl = cta?.linkUrl || "https://www.venicefounders.com/"
 
-          // Build the tagline with highlighted words
-          const renderTagline = () => {
-            let result: React.ReactNode[] = []
-            let remaining = tagline
-            highlights.forEach((word: string, idx: number) => {
-              const index = remaining.indexOf(word)
-              if (index !== -1) {
-                if (index > 0) {
-                  result.push(remaining.slice(0, index))
-                }
-                result.push(
-                  <span key={idx} className="bg-foreground text-background px-1.5 py-0.5">
-                    {word}
-                  </span>
-                )
-                remaining = remaining.slice(index + word.length)
-              }
-            })
-            if (remaining) result.push(remaining)
-            return result
-          }
-
           return (
-            <div className="-mx-6 sm:-mx-8 bg-card border-y border-border">
+            <div
+              className="venice-cta -mx-6 sm:-mx-8 bg-card border-y border-border group/venice"
+              style={{ borderLeftWidth: "3px", borderLeftColor: "#C6F1E2", borderLeftStyle: "solid" }}
+            >
               <div className="max-w-[720px] mx-auto px-6 sm:px-8 py-14 sm:py-16">
-                <div className="grid sm:grid-cols-2 gap-8">
-                  {/* Left: Tagline */}
+                <div className="grid sm:grid-cols-[1fr_1fr] gap-8 lg:gap-10 items-center">
+                  {/* Left: Content */}
                   <div>
-                    <p className="font-serif text-2xl sm:text-3xl tracking-tight leading-snug mb-4">
-                      {renderTagline()}
+                    <p className="text-[10px] font-bold tracking-[0.25em] text-foreground/50 mb-5">
+                      VENICE FOUNDERS NETWORK
                     </p>
-                    <p className="text-[10px] font-bold tracking-[0.25em] text-muted-foreground">
-                      {badge}
+                    <a href={linkUrl} target="_blank" rel="noopener noreferrer" className="block mb-4 hover:opacity-70 transition-opacity duration-300">
+                      <h3 className="font-serif text-2xl sm:text-3xl tracking-tight leading-snug">
+                        Where <span className="bg-foreground text-background px-1.5 py-0.5">7- and 8-figure</span> European founders connect.
+                      </h3>
+                    </a>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                      Venice is a private network for Europe's leading eCommerce founders & CEOs.
                     </p>
+                    {/* Image — visible on mobile below description */}
+                    <a href={linkUrl} target="_blank" rel="noopener noreferrer" className="block w-full aspect-[4/3] bg-border/40 overflow-hidden mb-6 sm:hidden">
+                      <VeniceImages />
+                    </a>
+                    <div className="flex items-center gap-5">
+                      <a
+                        href={linkUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="venice-cta-btn inline-flex items-center gap-2.5 justify-center text-background px-7 py-3.5 font-bold text-[11px] tracking-[0.15em] bg-foreground"
+                      >
+                        {linkText.toUpperCase()}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                          <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                      </a>
+                      <span className="text-[10px] font-bold tracking-[0.15em] text-foreground/40">
+                        150+ MEMBERS
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Right: Description */}
-                  <div className="flex flex-col justify-center">
-                    <p className="font-bold text-sm mb-2">
-                      {heading}
-                    </p>
-                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                      {description}
-                    </p>
-                    <a
-                      href={linkUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[10px] font-bold tracking-[0.2em] hover:text-muted-foreground transition-colors duration-500"
-                    >
-                      {`${linkText} -->`}
-                    </a>
-                  </div>
+                  {/* Right: Image — desktop only */}
+                  <a href={linkUrl} target="_blank" rel="noopener noreferrer" className="w-full aspect-[4/3] bg-border/40 overflow-hidden hidden sm:block">
+                    <VeniceImages />
+                  </a>
                 </div>
               </div>
             </div>
@@ -543,9 +572,6 @@ export default async function ArticlePage({
           </div>
         </section>
       )}
-
-      {/* Newsletter CTA */}
-      <NewsletterSection siteSettings={siteSettings} />
 
       <Footer siteSettings={siteSettings} />
     </div>

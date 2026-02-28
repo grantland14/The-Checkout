@@ -4,7 +4,6 @@ export const dynamicParams = true
 import { notFound } from "next/navigation"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import NewsletterSection from "@/components/newsletter-section"
 import ArticleListWithLoadMore from "@/components/article-list-with-load-more"
 import type { Metadata } from "next"
 import { getSiteSettings, getAuthorBySlug, getAllAuthorSlugs } from "@/lib/queries"
@@ -133,8 +132,6 @@ export default async function AuthorPage({
           )}
         </section>
 
-        {/* ───────────────── Newsletter CTA ───────────────── */}
-        <NewsletterSection siteSettings={siteSettings} />
       </main>
 
       <Footer siteSettings={siteSettings} />

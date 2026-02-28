@@ -104,10 +104,11 @@
 
 /* Card lift on hover */
 .card-lift {
-  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), background-color 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), background-color 0.5s ease;
 }
 .card-lift:hover {
   transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
 }
 
 /* Hero accent stripe animation */
@@ -230,6 +231,38 @@
   font-style: italic;
   color: var(--foreground);
   letter-spacing: -0.01em;
+}
+
+/* Venice CTA button hover */
+.venice-cta-btn {
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.venice-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Divider draw-in animation */
+.divider-draw {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.divider-draw.visible {
+  transform: scaleX(1);
+}
+
+/* Mobile menu slide transition */
+.mobile-menu-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.mobile-menu-wrapper.open {
+  grid-template-rows: 1fr;
+}
+.mobile-menu-inner {
+  overflow: hidden;
 }
 
 /* Image treatment */
