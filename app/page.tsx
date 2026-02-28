@@ -409,21 +409,24 @@ export default async function HomePage() {
                 </Link>
               )}
 
-              {/* Remaining articles — horizontal rows with thumbnails */}
+              {/* Divider */}
+              <div className="border-t border-border mb-12 mt-12" />
+
+              {/* Remaining articles in 3-column grid */}
               {analysisArticles.length > 1 && (
-                <div className="divide-y divide-border mt-12">
+                <div className="grid lg:grid-cols-3 gap-x-12 gap-y-12">
                   {analysisArticles.slice(1).map((article: any) => (
                     <Link
                       key={article._id}
                       href={`/article/${article.slug.current}`}
-                      className="group card-lift flex gap-6 lg:gap-8 py-8"
+                      className="group card-lift block"
                     >
-                      {/* Thumbnail */}
+                      {/* Image */}
                       {article.featuredImage && (
-                        <div className="image-editorial w-28 h-28 lg:w-40 lg:h-28 shrink-0 bg-card">
+                        <div className="image-editorial w-full aspect-[16/10] bg-card mb-5">
                           <img
                             src={urlFor(article.featuredImage)
-                              .width(480)
+                              .width(1200)
                               .url()}
                             alt={article.title}
                             className="w-full h-full object-cover"
@@ -431,24 +434,24 @@ export default async function HomePage() {
                         </div>
                       )}
 
-                      {/* Content */}
-                      <div className="flex flex-col justify-center min-w-0">
-                        <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground mb-2">
-                          ANALYSIS
+                      {/* Tag */}
+                      <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground mb-4">
+                        ANALYSIS
+                      </p>
+
+                      {/* Title */}
+                      <h3 className="font-serif text-xl lg:text-2xl font-normal leading-snug mb-3">
+                        <span className="headline-hover">
+                          {article.title}
+                        </span>
+                      </h3>
+
+                      {/* Excerpt */}
+                      {article.excerpt && (
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {article.excerpt}
                         </p>
-
-                        <h3 className="font-serif text-xl lg:text-2xl font-normal leading-snug mb-2">
-                          <span className="headline-hover">
-                            {article.title}
-                          </span>
-                        </h3>
-
-                        {article.excerpt && (
-                          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 hidden sm:block">
-                            {article.excerpt}
-                          </p>
-                        )}
-                      </div>
+                      )}
                     </Link>
                   ))}
                 </div>
