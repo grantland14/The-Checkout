@@ -1,20 +1,16 @@
 import { revalidatePath } from "next/cache"
 import { NextRequest, NextResponse } from "next/server"
-import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook"
-
-const secret = process.env.SANITY_WEBHOOK_SECRET!
 
 export async function POST(request: NextRequest) {
-  const signature = request.headers.get(SIGNATURE_HEADER_NAME) || ""
-  const body = await request.text()
+  const secret = request.headers.get("x-webhook-secret")
 
-  if (!(await isValidSignature(body, signature, secret))) {
-    return NextResponse.json({ message: "Invalid signature" }, { status: 401 })
+  if (secret !== process.env.SANITY_WEBHOOK_SECRET) {
+    return NextResponse.json({ message: "Invalid secret" }, { status: 401 })
   }
 
   try {
-    const payload = JSON.parse(body)
-    const type = payload?._type
+    const body = await request.json()
+    const type = body?._type
 
     // Revalidate based on content type
     if (type === "article") {
